@@ -41,6 +41,24 @@ for fmt in '' RFC4716 PKCS8 PEM; do
 		*mayo2*) test -z "$oldfmt" || continue ;;
 		*mayo3*) test -z "$oldfmt" || continue ;;
 		*mayo5*) test -z "$oldfmt" || continue ;;
+		*crossrsdp192balanced*) test -z "$oldfmt" || continue ;;
+		*crossrsdp192fast*) test -z "$oldfmt" || continue ;;
+		*crossrsdp192small*) test -z "$oldfmt" || continue ;;
+		*crossrsdp256balanced*) test -z "$oldfmt" || continue ;;
+		*crossrsdp256fast*) test -z "$oldfmt" || continue ;;
+		*crossrsdp256small*) test -z "$oldfmt" || continue ;;
+		*crossrsdpg192balanced*) test -z "$oldfmt" || continue ;;
+		*crossrsdpg192fast*) test -z "$oldfmt" || continue ;;
+		*crossrsdpg192small*) test -z "$oldfmt" || continue ;;
+		*crossrsdpg256balanced*) test -z "$oldfmt" || continue ;;
+		*crossrsdpg256fast*) test -z "$oldfmt" || continue ;;
+		*crossrsdpg256small*) test -z "$oldfmt" || continue ;;
+		*oviii*) test -z "$oldfmt" || continue ;;
+		*ovv*) test -z "$oldfmt" || continue ;;
+		*oviiipkc*) test -z "$oldfmt" || continue ;;
+		*ovvpkc*) test -z "$oldfmt" || continue ;;
+		*oviiipkcskc*) test -z "$oldfmt" || continue ;;
+		*ovvpkcskc*) test -z "$oldfmt" || continue ;;
 ##### OQS_TEMPLATE_FRAGMENT_EXCLUDE_OQS_ALGS_END
 		esac
 		comment="foo bar"

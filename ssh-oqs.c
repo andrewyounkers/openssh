@@ -73,6 +73,42 @@ static size_t oqs_sig_pk_len(int type)
     case KEY_ECDSA_NISTP384_MAYO_3:return OQS_SIG_mayo_3_length_public_key;
     case KEY_MAYO_5:
     case KEY_ECDSA_NISTP521_MAYO_5:return OQS_SIG_mayo_5_length_public_key;
+    case KEY_CROSS_RSDP_192_BALANCED:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:return OQS_SIG_cross_rsdp_192_balanced_length_public_key;
+    case KEY_CROSS_RSDP_192_FAST:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:return OQS_SIG_cross_rsdp_192_fast_length_public_key;
+    case KEY_CROSS_RSDP_192_SMALL:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:return OQS_SIG_cross_rsdp_192_small_length_public_key;
+    case KEY_CROSS_RSDP_256_BALANCED:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:return OQS_SIG_cross_rsdp_256_balanced_length_public_key;
+    case KEY_CROSS_RSDP_256_FAST:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:return OQS_SIG_cross_rsdp_256_fast_length_public_key;
+    case KEY_CROSS_RSDP_256_SMALL:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:return OQS_SIG_cross_rsdp_256_small_length_public_key;
+    case KEY_CROSS_RSDPG_192_BALANCED:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:return OQS_SIG_cross_rsdpg_192_balanced_length_public_key;
+    case KEY_CROSS_RSDPG_192_FAST:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:return OQS_SIG_cross_rsdpg_192_fast_length_public_key;
+    case KEY_CROSS_RSDPG_192_SMALL:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:return OQS_SIG_cross_rsdpg_192_small_length_public_key;
+    case KEY_CROSS_RSDPG_256_BALANCED:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:return OQS_SIG_cross_rsdpg_256_balanced_length_public_key;
+    case KEY_CROSS_RSDPG_256_FAST:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:return OQS_SIG_cross_rsdpg_256_fast_length_public_key;
+    case KEY_CROSS_RSDPG_256_SMALL:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:return OQS_SIG_cross_rsdpg_256_small_length_public_key;
+    case KEY_OV_III:
+    case KEY_ECDSA_NISTP384_OV_III:return OQS_SIG_ov_iii_length_public_key;
+    case KEY_OV_V:
+    case KEY_ECDSA_NISTP521_OV_V:return OQS_SIG_ov_v_length_public_key;
+    case KEY_OV_III_PKC:
+    case KEY_ECDSA_NISTP384_OV_III_PKC:return OQS_SIG_ov_iii_pkc_length_public_key;
+    case KEY_OV_V_PKC:
+    case KEY_ECDSA_NISTP521_OV_V_PKC:return OQS_SIG_ov_v_pkc_length_public_key;
+    case KEY_OV_III_PKC_SKC:
+    case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:return OQS_SIG_ov_iii_pkc_skc_length_public_key;
+    case KEY_OV_V_PKC_SKC:
+    case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:return OQS_SIG_ov_v_pkc_skc_length_public_key;
 ///// OQS_TEMPLATE_FRAGMENT_RETURN_PK_LEN_END
   }
   return 0;
@@ -117,6 +153,60 @@ static size_t oqs_sig_sk_len(int type)
     case KEY_MAYO_5:
     case KEY_ECDSA_NISTP521_MAYO_5:
       return OQS_SIG_mayo_5_length_secret_key;
+    case KEY_CROSS_RSDP_192_BALANCED:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+      return OQS_SIG_cross_rsdp_192_balanced_length_secret_key;
+    case KEY_CROSS_RSDP_192_FAST:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+      return OQS_SIG_cross_rsdp_192_fast_length_secret_key;
+    case KEY_CROSS_RSDP_192_SMALL:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+      return OQS_SIG_cross_rsdp_192_small_length_secret_key;
+    case KEY_CROSS_RSDP_256_BALANCED:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+      return OQS_SIG_cross_rsdp_256_balanced_length_secret_key;
+    case KEY_CROSS_RSDP_256_FAST:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+      return OQS_SIG_cross_rsdp_256_fast_length_secret_key;
+    case KEY_CROSS_RSDP_256_SMALL:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+      return OQS_SIG_cross_rsdp_256_small_length_secret_key;
+    case KEY_CROSS_RSDPG_192_BALANCED:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+      return OQS_SIG_cross_rsdpg_192_balanced_length_secret_key;
+    case KEY_CROSS_RSDPG_192_FAST:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+      return OQS_SIG_cross_rsdpg_192_fast_length_secret_key;
+    case KEY_CROSS_RSDPG_192_SMALL:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+      return OQS_SIG_cross_rsdpg_192_small_length_secret_key;
+    case KEY_CROSS_RSDPG_256_BALANCED:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+      return OQS_SIG_cross_rsdpg_256_balanced_length_secret_key;
+    case KEY_CROSS_RSDPG_256_FAST:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+      return OQS_SIG_cross_rsdpg_256_fast_length_secret_key;
+    case KEY_CROSS_RSDPG_256_SMALL:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+      return OQS_SIG_cross_rsdpg_256_small_length_secret_key;
+    case KEY_OV_III:
+    case KEY_ECDSA_NISTP384_OV_III:
+      return OQS_SIG_ov_iii_length_secret_key;
+    case KEY_OV_V:
+    case KEY_ECDSA_NISTP521_OV_V:
+      return OQS_SIG_ov_v_length_secret_key;
+    case KEY_OV_III_PKC:
+    case KEY_ECDSA_NISTP384_OV_III_PKC:
+      return OQS_SIG_ov_iii_pkc_length_secret_key;
+    case KEY_OV_V_PKC:
+    case KEY_ECDSA_NISTP521_OV_V_PKC:
+      return OQS_SIG_ov_v_pkc_length_secret_key;
+    case KEY_OV_III_PKC_SKC:
+    case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:
+      return OQS_SIG_ov_iii_pkc_skc_length_secret_key;
+    case KEY_OV_V_PKC_SKC:
+    case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:
+      return OQS_SIG_ov_v_pkc_skc_length_secret_key;
 ///// OQS_TEMPLATE_FRAGMENT_RETURN_SK_LEN_END
   }
   return 0;
@@ -1343,6 +1433,1410 @@ const struct sshkey_impl sshkey_mayo5_impl = {
   /* .keybits = */ 0,
   /* .funcs = */ &sshkey_mayo5_funcs,
 };
+/*---------------------------------------------------
+ * CROSS_RSDP_192_BALANCED METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdp192balanced_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdp_192_balanced_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdp192balanced_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_192_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdp192balanced", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdp192balanced_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_192_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdp192balanced", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdp192balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdp192balanced_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdp192balanced_sign,
+  /* .verify = */ ssh_crossrsdp192balanced_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdp192balanced_impl = {
+  /* .name = */ "ssh-crossrsdp192balanced",
+  /* .shortname = */ "CROSSRSDP192BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDP_192_BALANCED,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdp192balanced_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDP_192_FAST METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdp192fast_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdp_192_fast_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdp192fast_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_192_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdp192fast", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdp192fast_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_192_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdp192fast", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdp192fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdp192fast_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdp192fast_sign,
+  /* .verify = */ ssh_crossrsdp192fast_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdp192fast_impl = {
+  /* .name = */ "ssh-crossrsdp192fast",
+  /* .shortname = */ "CROSSRSDP192FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDP_192_FAST,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdp192fast_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDP_192_SMALL METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdp192small_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdp_192_small_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdp192small_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_192_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdp192small", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdp192small_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_192_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdp192small", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdp192small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdp192small_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdp192small_sign,
+  /* .verify = */ ssh_crossrsdp192small_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdp192small_impl = {
+  /* .name = */ "ssh-crossrsdp192small",
+  /* .shortname = */ "CROSSRSDP192SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDP_192_SMALL,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdp192small_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDP_256_BALANCED METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdp256balanced_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdp_256_balanced_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdp256balanced_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_256_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdp256balanced", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdp256balanced_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_256_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdp256balanced", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdp256balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdp256balanced_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdp256balanced_sign,
+  /* .verify = */ ssh_crossrsdp256balanced_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdp256balanced_impl = {
+  /* .name = */ "ssh-crossrsdp256balanced",
+  /* .shortname = */ "CROSSRSDP256BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDP_256_BALANCED,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdp256balanced_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDP_256_FAST METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdp256fast_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdp_256_fast_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdp256fast_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_256_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdp256fast", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdp256fast_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_256_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdp256fast", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdp256fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdp256fast_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdp256fast_sign,
+  /* .verify = */ ssh_crossrsdp256fast_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdp256fast_impl = {
+  /* .name = */ "ssh-crossrsdp256fast",
+  /* .shortname = */ "CROSSRSDP256FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDP_256_FAST,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdp256fast_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDP_256_SMALL METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdp256small_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdp_256_small_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdp256small_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_256_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdp256small", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdp256small_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdp_256_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdp256small", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdp256small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdp256small_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdp256small_sign,
+  /* .verify = */ ssh_crossrsdp256small_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdp256small_impl = {
+  /* .name = */ "ssh-crossrsdp256small",
+  /* .shortname = */ "CROSSRSDP256SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDP_256_SMALL,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdp256small_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDPG_192_BALANCED METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdpg192balanced_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdpg_192_balanced_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdpg192balanced_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_192_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdpg192balanced", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdpg192balanced_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_192_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdpg192balanced", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdpg192balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdpg192balanced_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdpg192balanced_sign,
+  /* .verify = */ ssh_crossrsdpg192balanced_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdpg192balanced_impl = {
+  /* .name = */ "ssh-crossrsdpg192balanced",
+  /* .shortname = */ "CROSSRSDPG192BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDPG_192_BALANCED,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdpg192balanced_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDPG_192_FAST METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdpg192fast_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdpg_192_fast_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdpg192fast_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_192_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdpg192fast", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdpg192fast_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_192_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdpg192fast", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdpg192fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdpg192fast_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdpg192fast_sign,
+  /* .verify = */ ssh_crossrsdpg192fast_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdpg192fast_impl = {
+  /* .name = */ "ssh-crossrsdpg192fast",
+  /* .shortname = */ "CROSSRSDPG192FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDPG_192_FAST,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdpg192fast_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDPG_192_SMALL METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdpg192small_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdpg_192_small_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdpg192small_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_192_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdpg192small", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdpg192small_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_192_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdpg192small", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdpg192small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdpg192small_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdpg192small_sign,
+  /* .verify = */ ssh_crossrsdpg192small_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdpg192small_impl = {
+  /* .name = */ "ssh-crossrsdpg192small",
+  /* .shortname = */ "CROSSRSDPG192SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDPG_192_SMALL,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdpg192small_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDPG_256_BALANCED METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdpg256balanced_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdpg_256_balanced_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdpg256balanced_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_256_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdpg256balanced", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdpg256balanced_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_256_balanced);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdpg256balanced", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdpg256balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdpg256balanced_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdpg256balanced_sign,
+  /* .verify = */ ssh_crossrsdpg256balanced_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdpg256balanced_impl = {
+  /* .name = */ "ssh-crossrsdpg256balanced",
+  /* .shortname = */ "CROSSRSDPG256BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDPG_256_BALANCED,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdpg256balanced_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDPG_256_FAST METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdpg256fast_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdpg_256_fast_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdpg256fast_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_256_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdpg256fast", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdpg256fast_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_256_fast);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdpg256fast", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdpg256fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdpg256fast_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdpg256fast_sign,
+  /* .verify = */ ssh_crossrsdpg256fast_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdpg256fast_impl = {
+  /* .name = */ "ssh-crossrsdpg256fast",
+  /* .shortname = */ "CROSSRSDPG256FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDPG_256_FAST,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdpg256fast_funcs,
+};
+/*---------------------------------------------------
+ * CROSS_RSDPG_256_SMALL METHODS
+ *---------------------------------------------------
+ */
+static int ssh_crossrsdpg256small_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_cross_rsdpg_256_small_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_crossrsdpg256small_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_256_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "crossrsdpg256small", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_crossrsdpg256small_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_cross_rsdpg_256_small);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "crossrsdpg256small", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_crossrsdpg256small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_crossrsdpg256small_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_crossrsdpg256small_sign,
+  /* .verify = */ ssh_crossrsdpg256small_verify,
+};
+
+const struct sshkey_impl sshkey_crossrsdpg256small_impl = {
+  /* .name = */ "ssh-crossrsdpg256small",
+  /* .shortname = */ "CROSSRSDPG256SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_CROSS_RSDPG_256_SMALL,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_crossrsdpg256small_funcs,
+};
+/*---------------------------------------------------
+ * OV_III METHODS
+ *---------------------------------------------------
+ */
+static int ssh_oviii_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_ov_iii_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_oviii_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_iii);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "oviii", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_oviii_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_iii);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "oviii", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_oviii_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_oviii_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_oviii_sign,
+  /* .verify = */ ssh_oviii_verify,
+};
+
+const struct sshkey_impl sshkey_oviii_impl = {
+  /* .name = */ "ssh-oviii",
+  /* .shortname = */ "OVIII",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_OV_III,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_oviii_funcs,
+};
+/*---------------------------------------------------
+ * OV_V METHODS
+ *---------------------------------------------------
+ */
+static int ssh_ovv_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_ov_v_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_ovv_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_v);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "ovv", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_ovv_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_v);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "ovv", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_ovv_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_ovv_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_ovv_sign,
+  /* .verify = */ ssh_ovv_verify,
+};
+
+const struct sshkey_impl sshkey_ovv_impl = {
+  /* .name = */ "ssh-ovv",
+  /* .shortname = */ "OVV",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_OV_V,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ovv_funcs,
+};
+/*---------------------------------------------------
+ * OV_III_PKC METHODS
+ *---------------------------------------------------
+ */
+static int ssh_oviiipkc_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_ov_iii_pkc_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_oviiipkc_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_iii_pkc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "oviiipkc", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_oviiipkc_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_iii_pkc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "oviiipkc", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_oviiipkc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_oviiipkc_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_oviiipkc_sign,
+  /* .verify = */ ssh_oviiipkc_verify,
+};
+
+const struct sshkey_impl sshkey_oviiipkc_impl = {
+  /* .name = */ "ssh-oviiipkc",
+  /* .shortname = */ "OVIIIPKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_OV_III_PKC,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_oviiipkc_funcs,
+};
+/*---------------------------------------------------
+ * OV_V_PKC METHODS
+ *---------------------------------------------------
+ */
+static int ssh_ovvpkc_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_ov_v_pkc_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_ovvpkc_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_v_pkc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "ovvpkc", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_ovvpkc_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_v_pkc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "ovvpkc", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_ovvpkc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_ovvpkc_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_ovvpkc_sign,
+  /* .verify = */ ssh_ovvpkc_verify,
+};
+
+const struct sshkey_impl sshkey_ovvpkc_impl = {
+  /* .name = */ "ssh-ovvpkc",
+  /* .shortname = */ "OVVPKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_OV_V_PKC,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ovvpkc_funcs,
+};
+/*---------------------------------------------------
+ * OV_III_PKC_SKC METHODS
+ *---------------------------------------------------
+ */
+static int ssh_oviiipkcskc_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_ov_iii_pkc_skc_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_oviiipkcskc_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_iii_pkc_skc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "oviiipkcskc", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_oviiipkcskc_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_iii_pkc_skc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "oviiipkcskc", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_oviiipkcskc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_oviiipkcskc_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_oviiipkcskc_sign,
+  /* .verify = */ ssh_oviiipkcskc_verify,
+};
+
+const struct sshkey_impl sshkey_oviiipkcskc_impl = {
+  /* .name = */ "ssh-oviiipkcskc",
+  /* .shortname = */ "OVIIIPKCSKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_OV_III_PKC_SKC,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_oviiipkcskc_funcs,
+};
+/*---------------------------------------------------
+ * OV_V_PKC_SKC METHODS
+ *---------------------------------------------------
+ */
+static int ssh_ovvpkcskc_generate(struct sshkey *k, int bits)
+{
+  k->oqs_pk_len = oqs_sig_pk_len(k->type);
+  k->oqs_sk_len = oqs_sig_sk_len(k->type);
+  if ((k->oqs_pk = malloc(k->oqs_pk_len)) == NULL ||
+      (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
+    return SSH_ERR_ALLOC_FAIL;
+  }
+  return OQS_SIG_ov_v_pkc_skc_keypair(k->oqs_pk, k->oqs_sk);
+}
+
+int ssh_ovvpkcskc_sign(struct sshkey *key,
+                     u_char **sigp,
+                     size_t *lenp,
+                     const u_char *data,
+                     size_t datalen,
+                     const char *alg,
+                     const char *sk_provider,
+                     const char *sk_pin,
+                     u_int compat)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_v_pkc_skc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_sign(sig, "ovvpkcskc", key, sigp, lenp, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+int ssh_ovvpkcskc_verify(const struct sshkey *key,
+                       const u_char *signature,
+                       size_t signaturelen,
+                       const u_char *data,
+                       size_t datalen,
+                       const char *alg,
+                       u_int compat,
+                       struct sshkey_sig_details **detailsp)
+{
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_ov_v_pkc_skc);
+    if (sig == NULL) {
+        return SSH_ERR_ALLOC_FAIL;
+    }
+    int r = oqs_verify(sig, "ovvpkcskc", key, signature, signaturelen, data, datalen, compat);
+    OQS_SIG_free(sig);
+    return r;
+}
+
+static const struct sshkey_impl_funcs sshkey_ovvpkcskc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_ovvpkcskc_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_ovvpkcskc_sign,
+  /* .verify = */ ssh_ovvpkcskc_verify,
+};
+
+const struct sshkey_impl sshkey_ovvpkcskc_impl = {
+  /* .name = */ "ssh-ovvpkcskc",
+  /* .shortname = */ "OVVPKCSKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_OV_V_PKC_SKC,
+  /* .nid = */ 0,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ovvpkcskc_funcs,
+};
 
 #ifdef WITH_OPENSSL
 static const struct sshkey_impl_funcs sshkey_rsa3072_falcon512_funcs = {
@@ -1710,6 +3204,474 @@ const struct sshkey_impl sshkey_ecdsanistp521_mayo5_impl = {
   /* .keybits = */ 0,
   /* .funcs = */ &sshkey_ecdsanistp521_mayo5_funcs,
 };
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_crossrsdp192balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_crossrsdp192balanced_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-crossrsdp192balanced",
+  /* .shortname = */ "ECDSA_NISTP384_CROSSRSDP192BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_crossrsdp192balanced_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_crossrsdp192fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_crossrsdp192fast_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-crossrsdp192fast",
+  /* .shortname = */ "ECDSA_NISTP384_CROSSRSDP192FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_crossrsdp192fast_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_crossrsdp192small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_crossrsdp192small_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-crossrsdp192small",
+  /* .shortname = */ "ECDSA_NISTP384_CROSSRSDP192SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_crossrsdp192small_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_crossrsdp256balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_crossrsdp256balanced_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-crossrsdp256balanced",
+  /* .shortname = */ "ECDSA_NISTP521_CROSSRSDP256BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_crossrsdp256balanced_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_crossrsdp256fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_crossrsdp256fast_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-crossrsdp256fast",
+  /* .shortname = */ "ECDSA_NISTP521_CROSSRSDP256FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_crossrsdp256fast_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_crossrsdp256small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_crossrsdp256small_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-crossrsdp256small",
+  /* .shortname = */ "ECDSA_NISTP521_CROSSRSDP256SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_crossrsdp256small_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_crossrsdpg192balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_crossrsdpg192balanced_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-crossrsdpg192balanced",
+  /* .shortname = */ "ECDSA_NISTP384_CROSSRSDPG192BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_crossrsdpg192balanced_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_crossrsdpg192fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_crossrsdpg192fast_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-crossrsdpg192fast",
+  /* .shortname = */ "ECDSA_NISTP384_CROSSRSDPG192FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_crossrsdpg192fast_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_crossrsdpg192small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_crossrsdpg192small_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-crossrsdpg192small",
+  /* .shortname = */ "ECDSA_NISTP384_CROSSRSDPG192SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_crossrsdpg192small_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_crossrsdpg256balanced_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_crossrsdpg256balanced_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-crossrsdpg256balanced",
+  /* .shortname = */ "ECDSA_NISTP521_CROSSRSDPG256BALANCED",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_crossrsdpg256balanced_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_crossrsdpg256fast_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_crossrsdpg256fast_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-crossrsdpg256fast",
+  /* .shortname = */ "ECDSA_NISTP521_CROSSRSDPG256FAST",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_crossrsdpg256fast_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_crossrsdpg256small_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_crossrsdpg256small_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-crossrsdpg256small",
+  /* .shortname = */ "ECDSA_NISTP521_CROSSRSDPG256SMALL",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_crossrsdpg256small_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_oviii_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_oviii_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-oviii",
+  /* .shortname = */ "ECDSA_NISTP384_OVIII",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_OV_III,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_oviii_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_ovv_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_ovv_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-ovv",
+  /* .shortname = */ "ECDSA_NISTP521_OVV",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_OV_V,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_ovv_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_oviiipkc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_oviiipkc_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-oviiipkc",
+  /* .shortname = */ "ECDSA_NISTP384_OVIIIPKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_OV_III_PKC,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_oviiipkc_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_ovvpkc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_ovvpkc_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-ovvpkc",
+  /* .shortname = */ "ECDSA_NISTP521_OVVPKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_OV_V_PKC,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_ovvpkc_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp384_oviiipkcskc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp384_oviiipkcskc_impl = {
+  /* .name = */ "ssh-ecdsa-nistp384-oviiipkcskc",
+  /* .shortname = */ "ECDSA_NISTP384_OVIIIPKCSKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP384_OV_III_PKC_SKC,
+  /* .nid = */ NID_secp384r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp384_oviiipkcskc_funcs,
+};
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_ovvpkcskc_funcs = {
+  /* .size = */ ssh_generic_size,
+  /* .alloc = */ ssh_generic_alloc,
+  /* .cleanup = */ ssh_generic_cleanup,
+  /* .equal = */ ssh_generic_equal,
+  /* .ssh_serialize_public = */ ssh_generic_serialize_public,
+  /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
+  /* .ssh_serialize_private = */ ssh_generic_serialize_private,
+  /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
+  /* .generate = */ ssh_generic_generate,
+  /* .copy_public = */ ssh_generic_copy_public,
+  /* .sign = */ ssh_generic_sign,
+  /* .verify = */ ssh_generic_verify,
+};
+
+const struct sshkey_impl sshkey_ecdsanistp521_ovvpkcskc_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-ovvpkcskc",
+  /* .shortname = */ "ECDSA_NISTP521_OVVPKCSKC",
+  /* .sigalg = */ NULL,
+  /* .type = */ KEY_ECDSA_NISTP521_OV_V_PKC_SKC,
+  /* .nid = */ NID_secp521r1,
+  /* .cert = */ 0,
+  /* .sigonly = */ 0,
+  /* .keybits = */ 0,
+  /* .funcs = */ &sshkey_ecdsanistp521_ovvpkcskc_funcs,
+};
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_SIG_FUNCTIONS_END
@@ -1783,6 +3745,78 @@ const struct sshkey_impl *oqs_pq_sshkey_impl(const struct sshkey *k)
     case KEY_MAYO_5:
     case KEY_ECDSA_NISTP521_MAYO_5:
       impl = &sshkey_mayo5_impl;
+      break;
+    case KEY_CROSS_RSDP_192_BALANCED:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+      impl = &sshkey_crossrsdp192balanced_impl;
+      break;
+    case KEY_CROSS_RSDP_192_FAST:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+      impl = &sshkey_crossrsdp192fast_impl;
+      break;
+    case KEY_CROSS_RSDP_192_SMALL:
+    case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+      impl = &sshkey_crossrsdp192small_impl;
+      break;
+    case KEY_CROSS_RSDP_256_BALANCED:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+      impl = &sshkey_crossrsdp256balanced_impl;
+      break;
+    case KEY_CROSS_RSDP_256_FAST:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+      impl = &sshkey_crossrsdp256fast_impl;
+      break;
+    case KEY_CROSS_RSDP_256_SMALL:
+    case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+      impl = &sshkey_crossrsdp256small_impl;
+      break;
+    case KEY_CROSS_RSDPG_192_BALANCED:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+      impl = &sshkey_crossrsdpg192balanced_impl;
+      break;
+    case KEY_CROSS_RSDPG_192_FAST:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+      impl = &sshkey_crossrsdpg192fast_impl;
+      break;
+    case KEY_CROSS_RSDPG_192_SMALL:
+    case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+      impl = &sshkey_crossrsdpg192small_impl;
+      break;
+    case KEY_CROSS_RSDPG_256_BALANCED:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+      impl = &sshkey_crossrsdpg256balanced_impl;
+      break;
+    case KEY_CROSS_RSDPG_256_FAST:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+      impl = &sshkey_crossrsdpg256fast_impl;
+      break;
+    case KEY_CROSS_RSDPG_256_SMALL:
+    case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+      impl = &sshkey_crossrsdpg256small_impl;
+      break;
+    case KEY_OV_III:
+    case KEY_ECDSA_NISTP384_OV_III:
+      impl = &sshkey_oviii_impl;
+      break;
+    case KEY_OV_V:
+    case KEY_ECDSA_NISTP521_OV_V:
+      impl = &sshkey_ovv_impl;
+      break;
+    case KEY_OV_III_PKC:
+    case KEY_ECDSA_NISTP384_OV_III_PKC:
+      impl = &sshkey_oviiipkc_impl;
+      break;
+    case KEY_OV_V_PKC:
+    case KEY_ECDSA_NISTP521_OV_V_PKC:
+      impl = &sshkey_ovvpkc_impl;
+      break;
+    case KEY_OV_III_PKC_SKC:
+    case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:
+      impl = &sshkey_oviiipkcskc_impl;
+      break;
+    case KEY_OV_V_PKC_SKC:
+    case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:
+      impl = &sshkey_ovvpkcskc_impl;
       break;
 ///// OQS_TEMPLATE_FRAGMENT_IMPL_LOOKUP_CASES_END
     default:

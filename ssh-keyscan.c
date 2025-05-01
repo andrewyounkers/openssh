@@ -95,7 +95,43 @@ int ssh_port = SSH_DEFAULT_PORT;
 #define KT_ECDSA_NISTP384_MAYO_3 ((uint64_t)1<<28)
 #define KT_MAYO_5 ((uint64_t)1<<29)
 #define KT_ECDSA_NISTP521_MAYO_5 ((uint64_t)1<<30)
-#define KT_MAX ((uint64_t)1<<30)
+#define KT_CROSS_RSDP_192_BALANCED ((uint64_t)1<<31)
+#define KT_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED ((uint64_t)1<<32)
+#define KT_CROSS_RSDP_192_FAST ((uint64_t)1<<33)
+#define KT_ECDSA_NISTP384_CROSS_RSDP_192_FAST ((uint64_t)1<<34)
+#define KT_CROSS_RSDP_192_SMALL ((uint64_t)1<<35)
+#define KT_ECDSA_NISTP384_CROSS_RSDP_192_SMALL ((uint64_t)1<<36)
+#define KT_CROSS_RSDP_256_BALANCED ((uint64_t)1<<37)
+#define KT_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED ((uint64_t)1<<38)
+#define KT_CROSS_RSDP_256_FAST ((uint64_t)1<<39)
+#define KT_ECDSA_NISTP521_CROSS_RSDP_256_FAST ((uint64_t)1<<40)
+#define KT_CROSS_RSDP_256_SMALL ((uint64_t)1<<41)
+#define KT_ECDSA_NISTP521_CROSS_RSDP_256_SMALL ((uint64_t)1<<42)
+#define KT_CROSS_RSDPG_192_BALANCED ((uint64_t)1<<43)
+#define KT_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED ((uint64_t)1<<44)
+#define KT_CROSS_RSDPG_192_FAST ((uint64_t)1<<45)
+#define KT_ECDSA_NISTP384_CROSS_RSDPG_192_FAST ((uint64_t)1<<46)
+#define KT_CROSS_RSDPG_192_SMALL ((uint64_t)1<<47)
+#define KT_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL ((uint64_t)1<<48)
+#define KT_CROSS_RSDPG_256_BALANCED ((uint64_t)1<<49)
+#define KT_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED ((uint64_t)1<<50)
+#define KT_CROSS_RSDPG_256_FAST ((uint64_t)1<<51)
+#define KT_ECDSA_NISTP521_CROSS_RSDPG_256_FAST ((uint64_t)1<<52)
+#define KT_CROSS_RSDPG_256_SMALL ((uint64_t)1<<53)
+#define KT_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL ((uint64_t)1<<54)
+#define KT_OV_III ((uint64_t)1<<55)
+#define KT_ECDSA_NISTP384_OV_III ((uint64_t)1<<56)
+#define KT_OV_V ((uint64_t)1<<57)
+#define KT_ECDSA_NISTP521_OV_V ((uint64_t)1<<58)
+#define KT_OV_III_PKC ((uint64_t)1<<59)
+#define KT_ECDSA_NISTP384_OV_III_PKC ((uint64_t)1<<60)
+#define KT_OV_V_PKC ((uint64_t)1<<61)
+#define KT_ECDSA_NISTP521_OV_V_PKC ((uint64_t)1<<62)
+#define KT_OV_III_PKC_SKC ((uint64_t)1<<63)
+#define KT_ECDSA_NISTP384_OV_III_PKC_SKC ((uint64_t)1<<64)
+#define KT_OV_V_PKC_SKC ((uint64_t)1<<65)
+#define KT_ECDSA_NISTP521_OV_V_PKC_SKC ((uint64_t)1<<66)
+#define KT_MAX ((uint64_t)1<<66)
 ///// OQS_TEMPLATE_FRAGMENT_ASSIGN_KT_MASKS_END
 #define KT_MIN		KT_DSA
 
@@ -125,7 +161,43 @@ uint64_t get_keytypes = KT_RSA|KT_ECDSA|KT_ED25519|KT_ECDSA_SK|KT_ED25519_SK|\
                         KT_MAYO_3 | \
                         KT_ECDSA_NISTP384_MAYO_3 | \
                         KT_MAYO_5 | \
-                        KT_ECDSA_NISTP521_MAYO_5;
+                        KT_ECDSA_NISTP521_MAYO_5 | \
+                        KT_CROSS_RSDP_192_BALANCED | \
+                        KT_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED | \
+                        KT_CROSS_RSDP_192_FAST | \
+                        KT_ECDSA_NISTP384_CROSS_RSDP_192_FAST | \
+                        KT_CROSS_RSDP_192_SMALL | \
+                        KT_ECDSA_NISTP384_CROSS_RSDP_192_SMALL | \
+                        KT_CROSS_RSDP_256_BALANCED | \
+                        KT_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED | \
+                        KT_CROSS_RSDP_256_FAST | \
+                        KT_ECDSA_NISTP521_CROSS_RSDP_256_FAST | \
+                        KT_CROSS_RSDP_256_SMALL | \
+                        KT_ECDSA_NISTP521_CROSS_RSDP_256_SMALL | \
+                        KT_CROSS_RSDPG_192_BALANCED | \
+                        KT_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED | \
+                        KT_CROSS_RSDPG_192_FAST | \
+                        KT_ECDSA_NISTP384_CROSS_RSDPG_192_FAST | \
+                        KT_CROSS_RSDPG_192_SMALL | \
+                        KT_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL | \
+                        KT_CROSS_RSDPG_256_BALANCED | \
+                        KT_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED | \
+                        KT_CROSS_RSDPG_256_FAST | \
+                        KT_ECDSA_NISTP521_CROSS_RSDPG_256_FAST | \
+                        KT_CROSS_RSDPG_256_SMALL | \
+                        KT_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL | \
+                        KT_OV_III | \
+                        KT_ECDSA_NISTP384_OV_III | \
+                        KT_OV_V | \
+                        KT_ECDSA_NISTP521_OV_V | \
+                        KT_OV_III_PKC | \
+                        KT_ECDSA_NISTP384_OV_III_PKC | \
+                        KT_OV_V_PKC | \
+                        KT_ECDSA_NISTP521_OV_V_PKC | \
+                        KT_OV_III_PKC_SKC | \
+                        KT_ECDSA_NISTP384_OV_III_PKC_SKC | \
+                        KT_OV_V_PKC_SKC | \
+                        KT_ECDSA_NISTP521_OV_V_PKC_SKC;
 ///// OQS_TEMPLATE_FRAGMENT_ADD_KEYTYPES_END
 
 int hash_hosts = 0;		/* Hash hostname on output */
@@ -367,6 +439,60 @@ keygrab_ssh2(con *c)
 	case KT_MAYO_5:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-mayo5";
 	  break;
+	case KT_CROSS_RSDP_192_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdp192balanced";
+	  break;
+	case KT_CROSS_RSDP_192_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdp192fast";
+	  break;
+	case KT_CROSS_RSDP_192_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdp192small";
+	  break;
+	case KT_CROSS_RSDP_256_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdp256balanced";
+	  break;
+	case KT_CROSS_RSDP_256_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdp256fast";
+	  break;
+	case KT_CROSS_RSDP_256_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdp256small";
+	  break;
+	case KT_CROSS_RSDPG_192_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdpg192balanced";
+	  break;
+	case KT_CROSS_RSDPG_192_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdpg192fast";
+	  break;
+	case KT_CROSS_RSDPG_192_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdpg192small";
+	  break;
+	case KT_CROSS_RSDPG_256_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdpg256balanced";
+	  break;
+	case KT_CROSS_RSDPG_256_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdpg256fast";
+	  break;
+	case KT_CROSS_RSDPG_256_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-crossrsdpg256small";
+	  break;
+	case KT_OV_III:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-oviii";
+	  break;
+	case KT_OV_V:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ovv";
+	  break;
+	case KT_OV_III_PKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-oviiipkc";
+	  break;
+	case KT_OV_V_PKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ovvpkc";
+	  break;
+	case KT_OV_III_PKC_SKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-oviiipkcskc";
+	  break;
+	case KT_OV_V_PKC_SKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ovvpkcskc";
+	  break;
 #ifdef WITH_OPENSSL
 	case KT_RSA3072_FALCON_512:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-rsa3072-falcon512";
@@ -410,6 +536,60 @@ keygrab_ssh2(con *c)
 	  break;
 	case KT_ECDSA_NISTP521_MAYO_5:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-mayo5";
+	  break;
+	case KT_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-crossrsdp192balanced";
+	  break;
+	case KT_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-crossrsdp192fast";
+	  break;
+	case KT_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-crossrsdp192small";
+	  break;
+	case KT_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-crossrsdp256balanced";
+	  break;
+	case KT_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-crossrsdp256fast";
+	  break;
+	case KT_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-crossrsdp256small";
+	  break;
+	case KT_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-crossrsdpg192balanced";
+	  break;
+	case KT_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-crossrsdpg192fast";
+	  break;
+	case KT_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-crossrsdpg192small";
+	  break;
+	case KT_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-crossrsdpg256balanced";
+	  break;
+	case KT_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-crossrsdpg256fast";
+	  break;
+	case KT_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-crossrsdpg256small";
+	  break;
+	case KT_ECDSA_NISTP384_OV_III:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-oviii";
+	  break;
+	case KT_ECDSA_NISTP521_OV_V:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-ovv";
+	  break;
+	case KT_ECDSA_NISTP384_OV_III_PKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-oviiipkc";
+	  break;
+	case KT_ECDSA_NISTP521_OV_V_PKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-ovvpkc";
+	  break;
+	case KT_ECDSA_NISTP384_OV_III_PKC_SKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp384-oviiipkcskc";
+	  break;
+	case KT_ECDSA_NISTP521_OV_V_PKC_SKC:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-ovvpkcskc";
 	  break;
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
@@ -1081,6 +1261,114 @@ main(int argc, char **argv)
 					break;
 				case KEY_ECDSA_NISTP521_MAYO_5:
 					get_keytypes |= KT_ECDSA_NISTP521_MAYO_5;
+					break;
+				case KEY_CROSS_RSDP_192_BALANCED:
+					get_keytypes |= KT_CROSS_RSDP_192_BALANCED;
+					break;
+				case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+					get_keytypes |= KT_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED;
+					break;
+				case KEY_CROSS_RSDP_192_FAST:
+					get_keytypes |= KT_CROSS_RSDP_192_FAST;
+					break;
+				case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+					get_keytypes |= KT_ECDSA_NISTP384_CROSS_RSDP_192_FAST;
+					break;
+				case KEY_CROSS_RSDP_192_SMALL:
+					get_keytypes |= KT_CROSS_RSDP_192_SMALL;
+					break;
+				case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+					get_keytypes |= KT_ECDSA_NISTP384_CROSS_RSDP_192_SMALL;
+					break;
+				case KEY_CROSS_RSDP_256_BALANCED:
+					get_keytypes |= KT_CROSS_RSDP_256_BALANCED;
+					break;
+				case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+					get_keytypes |= KT_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED;
+					break;
+				case KEY_CROSS_RSDP_256_FAST:
+					get_keytypes |= KT_CROSS_RSDP_256_FAST;
+					break;
+				case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+					get_keytypes |= KT_ECDSA_NISTP521_CROSS_RSDP_256_FAST;
+					break;
+				case KEY_CROSS_RSDP_256_SMALL:
+					get_keytypes |= KT_CROSS_RSDP_256_SMALL;
+					break;
+				case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+					get_keytypes |= KT_ECDSA_NISTP521_CROSS_RSDP_256_SMALL;
+					break;
+				case KEY_CROSS_RSDPG_192_BALANCED:
+					get_keytypes |= KT_CROSS_RSDPG_192_BALANCED;
+					break;
+				case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+					get_keytypes |= KT_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED;
+					break;
+				case KEY_CROSS_RSDPG_192_FAST:
+					get_keytypes |= KT_CROSS_RSDPG_192_FAST;
+					break;
+				case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+					get_keytypes |= KT_ECDSA_NISTP384_CROSS_RSDPG_192_FAST;
+					break;
+				case KEY_CROSS_RSDPG_192_SMALL:
+					get_keytypes |= KT_CROSS_RSDPG_192_SMALL;
+					break;
+				case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+					get_keytypes |= KT_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL;
+					break;
+				case KEY_CROSS_RSDPG_256_BALANCED:
+					get_keytypes |= KT_CROSS_RSDPG_256_BALANCED;
+					break;
+				case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+					get_keytypes |= KT_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED;
+					break;
+				case KEY_CROSS_RSDPG_256_FAST:
+					get_keytypes |= KT_CROSS_RSDPG_256_FAST;
+					break;
+				case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+					get_keytypes |= KT_ECDSA_NISTP521_CROSS_RSDPG_256_FAST;
+					break;
+				case KEY_CROSS_RSDPG_256_SMALL:
+					get_keytypes |= KT_CROSS_RSDPG_256_SMALL;
+					break;
+				case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+					get_keytypes |= KT_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL;
+					break;
+				case KEY_OV_III:
+					get_keytypes |= KT_OV_III;
+					break;
+				case KEY_ECDSA_NISTP384_OV_III:
+					get_keytypes |= KT_ECDSA_NISTP384_OV_III;
+					break;
+				case KEY_OV_V:
+					get_keytypes |= KT_OV_V;
+					break;
+				case KEY_ECDSA_NISTP521_OV_V:
+					get_keytypes |= KT_ECDSA_NISTP521_OV_V;
+					break;
+				case KEY_OV_III_PKC:
+					get_keytypes |= KT_OV_III_PKC;
+					break;
+				case KEY_ECDSA_NISTP384_OV_III_PKC:
+					get_keytypes |= KT_ECDSA_NISTP384_OV_III_PKC;
+					break;
+				case KEY_OV_V_PKC:
+					get_keytypes |= KT_OV_V_PKC;
+					break;
+				case KEY_ECDSA_NISTP521_OV_V_PKC:
+					get_keytypes |= KT_ECDSA_NISTP521_OV_V_PKC;
+					break;
+				case KEY_OV_III_PKC_SKC:
+					get_keytypes |= KT_OV_III_PKC_SKC;
+					break;
+				case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:
+					get_keytypes |= KT_ECDSA_NISTP384_OV_III_PKC_SKC;
+					break;
+				case KEY_OV_V_PKC_SKC:
+					get_keytypes |= KT_OV_V_PKC_SKC;
+					break;
+				case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:
+					get_keytypes |= KT_ECDSA_NISTP521_OV_V_PKC_SKC;
 					break;
 ///// OQS_TEMPLATE_FRAGMENT_ADD_TO_GET_KEYTYPES_END
 				case KEY_UNSPEC:

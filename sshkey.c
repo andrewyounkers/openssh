@@ -144,6 +144,24 @@ extern const struct sshkey_impl sshkey_mldsa87_impl;
 extern const struct sshkey_impl sshkey_mayo2_impl;
 extern const struct sshkey_impl sshkey_mayo3_impl;
 extern const struct sshkey_impl sshkey_mayo5_impl;
+extern const struct sshkey_impl sshkey_crossrsdp192balanced_impl;
+extern const struct sshkey_impl sshkey_crossrsdp192fast_impl;
+extern const struct sshkey_impl sshkey_crossrsdp192small_impl;
+extern const struct sshkey_impl sshkey_crossrsdp256balanced_impl;
+extern const struct sshkey_impl sshkey_crossrsdp256fast_impl;
+extern const struct sshkey_impl sshkey_crossrsdp256small_impl;
+extern const struct sshkey_impl sshkey_crossrsdpg192balanced_impl;
+extern const struct sshkey_impl sshkey_crossrsdpg192fast_impl;
+extern const struct sshkey_impl sshkey_crossrsdpg192small_impl;
+extern const struct sshkey_impl sshkey_crossrsdpg256balanced_impl;
+extern const struct sshkey_impl sshkey_crossrsdpg256fast_impl;
+extern const struct sshkey_impl sshkey_crossrsdpg256small_impl;
+extern const struct sshkey_impl sshkey_oviii_impl;
+extern const struct sshkey_impl sshkey_ovv_impl;
+extern const struct sshkey_impl sshkey_oviiipkc_impl;
+extern const struct sshkey_impl sshkey_ovvpkc_impl;
+extern const struct sshkey_impl sshkey_oviiipkcskc_impl;
+extern const struct sshkey_impl sshkey_ovvpkcskc_impl;
 
 #ifdef WITH_OPENSSL
 extern const struct sshkey_impl sshkey_rsa3072_falcon512_impl;
@@ -161,6 +179,24 @@ extern const struct sshkey_impl sshkey_ecdsanistp521_mldsa87_impl;
 extern const struct sshkey_impl sshkey_ecdsanistp256_mayo2_impl;
 extern const struct sshkey_impl sshkey_ecdsanistp384_mayo3_impl;
 extern const struct sshkey_impl sshkey_ecdsanistp521_mayo5_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_crossrsdp192balanced_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_crossrsdp192fast_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_crossrsdp192small_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_crossrsdp256balanced_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_crossrsdp256fast_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_crossrsdp256small_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_crossrsdpg192balanced_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_crossrsdpg192fast_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_crossrsdpg192small_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_crossrsdpg256balanced_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_crossrsdpg256fast_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_crossrsdpg256small_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_oviii_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_ovv_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_oviiipkc_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_ovvpkc_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp384_oviiipkcskc_impl;
+extern const struct sshkey_impl sshkey_ecdsanistp521_ovvpkcskc_impl;
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_EXTERN_KEY_IMPLS_END
@@ -214,6 +250,24 @@ const struct sshkey_impl * const keyimpls[] = {
 	&sshkey_mayo2_impl,
 	&sshkey_mayo3_impl,
 	&sshkey_mayo5_impl,
+	&sshkey_crossrsdp192balanced_impl,
+	&sshkey_crossrsdp192fast_impl,
+	&sshkey_crossrsdp192small_impl,
+	&sshkey_crossrsdp256balanced_impl,
+	&sshkey_crossrsdp256fast_impl,
+	&sshkey_crossrsdp256small_impl,
+	&sshkey_crossrsdpg192balanced_impl,
+	&sshkey_crossrsdpg192fast_impl,
+	&sshkey_crossrsdpg192small_impl,
+	&sshkey_crossrsdpg256balanced_impl,
+	&sshkey_crossrsdpg256fast_impl,
+	&sshkey_crossrsdpg256small_impl,
+	&sshkey_oviii_impl,
+	&sshkey_ovv_impl,
+	&sshkey_oviiipkc_impl,
+	&sshkey_ovvpkc_impl,
+	&sshkey_oviiipkcskc_impl,
+	&sshkey_ovvpkcskc_impl,
 #ifdef WITH_OPENSSL
 	&sshkey_rsa3072_falcon512_impl,
 	&sshkey_rsa3072_sphincssha2128fsimple_impl,
@@ -230,6 +284,24 @@ const struct sshkey_impl * const keyimpls[] = {
 	&sshkey_ecdsanistp256_mayo2_impl,
 	&sshkey_ecdsanistp384_mayo3_impl,
 	&sshkey_ecdsanistp521_mayo5_impl,
+	&sshkey_ecdsanistp384_crossrsdp192balanced_impl,
+	&sshkey_ecdsanistp384_crossrsdp192fast_impl,
+	&sshkey_ecdsanistp384_crossrsdp192small_impl,
+	&sshkey_ecdsanistp521_crossrsdp256balanced_impl,
+	&sshkey_ecdsanistp521_crossrsdp256fast_impl,
+	&sshkey_ecdsanistp521_crossrsdp256small_impl,
+	&sshkey_ecdsanistp384_crossrsdpg192balanced_impl,
+	&sshkey_ecdsanistp384_crossrsdpg192fast_impl,
+	&sshkey_ecdsanistp384_crossrsdpg192small_impl,
+	&sshkey_ecdsanistp521_crossrsdpg256balanced_impl,
+	&sshkey_ecdsanistp521_crossrsdpg256fast_impl,
+	&sshkey_ecdsanistp521_crossrsdpg256small_impl,
+	&sshkey_ecdsanistp384_oviii_impl,
+	&sshkey_ecdsanistp521_ovv_impl,
+	&sshkey_ecdsanistp384_oviiipkc_impl,
+	&sshkey_ecdsanistp521_ovvpkc_impl,
+	&sshkey_ecdsanistp384_oviiipkcskc_impl,
+	&sshkey_ecdsanistp521_ovvpkcskc_impl,
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEYTYPES_END

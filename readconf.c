@@ -2762,6 +2762,24 @@ fill_default_options(Options * options)
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_MAYO_2, 0);
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_MAYO_3, 0);
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_MAYO_5, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDP_192_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDP_192_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDP_192_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDP_256_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDP_256_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDP_256_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDPG_192_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDPG_192_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDPG_192_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDPG_256_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDPG_256_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_CROSS_RSDPG_256_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_OV_III, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_OV_V, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_OV_III_PKC, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_OV_V_PKC, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_OV_III_PKC_SKC, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_OV_V_PKC_SKC, 0);
 #ifdef WITH_OPENSSL
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_RSA3072_FALCON_512, 0);
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_RSA3072_SPHINCS_SHA2_128F_SIMPLE, 0);
@@ -2778,6 +2796,24 @@ fill_default_options(Options * options)
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP256_MAYO_2, 0);
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_MAYO_3, 0);
 		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_MAYO_5, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDP_192_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDP_192_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDP_256_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDP_256_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDPG_192_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDPG_256_FAST, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_OV_III, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_OV_V, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_OV_III_PKC, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_OV_V_PKC, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_OV_III_PKC_SKC, 0);
+		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_OV_V_PKC_SKC, 0);
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_ADD_ID_FILES_END

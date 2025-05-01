@@ -235,6 +235,60 @@ type_bits_valid(int type, const char *name, u_int32_t *bitsp)
 		  case KEY_ECDSA_NISTP521_MAYO_5:
 		    *bitsp = 521;
 		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP384_OV_III:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP521_OV_V:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP384_OV_III_PKC:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP521_OV_V_PKC:
+		    *bitsp = 521;
+		    break;
+		  case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:
+		    *bitsp = 384;
+		    break;
+		  case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:
+		    *bitsp = 521;
+		    break;
 ///// OQS_TEMPLATE_FRAGMENT_HANDLE_ECDSA_HYBRIDS_END
 		  }
 		}
@@ -364,6 +418,60 @@ ask_filename(struct passwd *pw, const char *prompt)
 		  case KEY_MAYO_5:
 		    name = _PATH_SSH_CLIENT_ID_MAYO_5;
 		    break;
+		  case KEY_CROSS_RSDP_192_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDP_192_BALANCED;
+		    break;
+		  case KEY_CROSS_RSDP_192_FAST:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDP_192_FAST;
+		    break;
+		  case KEY_CROSS_RSDP_192_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDP_192_SMALL;
+		    break;
+		  case KEY_CROSS_RSDP_256_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDP_256_BALANCED;
+		    break;
+		  case KEY_CROSS_RSDP_256_FAST:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDP_256_FAST;
+		    break;
+		  case KEY_CROSS_RSDP_256_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDP_256_SMALL;
+		    break;
+		  case KEY_CROSS_RSDPG_192_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDPG_192_BALANCED;
+		    break;
+		  case KEY_CROSS_RSDPG_192_FAST:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDPG_192_FAST;
+		    break;
+		  case KEY_CROSS_RSDPG_192_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDPG_192_SMALL;
+		    break;
+		  case KEY_CROSS_RSDPG_256_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDPG_256_BALANCED;
+		    break;
+		  case KEY_CROSS_RSDPG_256_FAST:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDPG_256_FAST;
+		    break;
+		  case KEY_CROSS_RSDPG_256_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_CROSS_RSDPG_256_SMALL;
+		    break;
+		  case KEY_OV_III:
+		    name = _PATH_SSH_CLIENT_ID_OV_III;
+		    break;
+		  case KEY_OV_V:
+		    name = _PATH_SSH_CLIENT_ID_OV_V;
+		    break;
+		  case KEY_OV_III_PKC:
+		    name = _PATH_SSH_CLIENT_ID_OV_III_PKC;
+		    break;
+		  case KEY_OV_V_PKC:
+		    name = _PATH_SSH_CLIENT_ID_OV_V_PKC;
+		    break;
+		  case KEY_OV_III_PKC_SKC:
+		    name = _PATH_SSH_CLIENT_ID_OV_III_PKC_SKC;
+		    break;
+		  case KEY_OV_V_PKC_SKC:
+		    name = _PATH_SSH_CLIENT_ID_OV_V_PKC_SKC;
+		    break;
 #ifdef WITH_OPENSSL
 		  case KEY_RSA3072_FALCON_512:
 		    name = _PATH_SSH_CLIENT_ID_RSA3072_FALCON_512;
@@ -407,6 +515,60 @@ ask_filename(struct passwd *pw, const char *prompt)
 		    break;
 		  case KEY_ECDSA_NISTP521_MAYO_5:
 		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_MAYO_5;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDP_192_FAST;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDP_192_SMALL;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDP_256_FAST;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDP_256_SMALL;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDPG_192_FAST;
+		    break;
+		  case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDPG_256_FAST;
+		    break;
+		  case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL;
+		    break;
+		  case KEY_ECDSA_NISTP384_OV_III:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_OV_III;
+		    break;
+		  case KEY_ECDSA_NISTP521_OV_V:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_OV_V;
+		    break;
+		  case KEY_ECDSA_NISTP384_OV_III_PKC:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_OV_III_PKC;
+		    break;
+		  case KEY_ECDSA_NISTP521_OV_V_PKC:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_OV_V_PKC;
+		    break;
+		  case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_OV_III_PKC_SKC;
+		    break;
+		  case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_OV_V_PKC_SKC;
 		    break;
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
@@ -1199,6 +1361,24 @@ do_gen_all_hostkeys(struct passwd *pw)
 		{ "mayo2", "MAYO_2", _PATH_HOST_MAYO_2_KEY_FILE },
 		{ "mayo3", "MAYO_3", _PATH_HOST_MAYO_3_KEY_FILE },
 		{ "mayo5", "MAYO_5", _PATH_HOST_MAYO_5_KEY_FILE },
+		{ "crossrsdp192balanced", "CROSS_RSDP_192_BALANCED", _PATH_HOST_CROSS_RSDP_192_BALANCED_KEY_FILE },
+		{ "crossrsdp192fast", "CROSS_RSDP_192_FAST", _PATH_HOST_CROSS_RSDP_192_FAST_KEY_FILE },
+		{ "crossrsdp192small", "CROSS_RSDP_192_SMALL", _PATH_HOST_CROSS_RSDP_192_SMALL_KEY_FILE },
+		{ "crossrsdp256balanced", "CROSS_RSDP_256_BALANCED", _PATH_HOST_CROSS_RSDP_256_BALANCED_KEY_FILE },
+		{ "crossrsdp256fast", "CROSS_RSDP_256_FAST", _PATH_HOST_CROSS_RSDP_256_FAST_KEY_FILE },
+		{ "crossrsdp256small", "CROSS_RSDP_256_SMALL", _PATH_HOST_CROSS_RSDP_256_SMALL_KEY_FILE },
+		{ "crossrsdpg192balanced", "CROSS_RSDPG_192_BALANCED", _PATH_HOST_CROSS_RSDPG_192_BALANCED_KEY_FILE },
+		{ "crossrsdpg192fast", "CROSS_RSDPG_192_FAST", _PATH_HOST_CROSS_RSDPG_192_FAST_KEY_FILE },
+		{ "crossrsdpg192small", "CROSS_RSDPG_192_SMALL", _PATH_HOST_CROSS_RSDPG_192_SMALL_KEY_FILE },
+		{ "crossrsdpg256balanced", "CROSS_RSDPG_256_BALANCED", _PATH_HOST_CROSS_RSDPG_256_BALANCED_KEY_FILE },
+		{ "crossrsdpg256fast", "CROSS_RSDPG_256_FAST", _PATH_HOST_CROSS_RSDPG_256_FAST_KEY_FILE },
+		{ "crossrsdpg256small", "CROSS_RSDPG_256_SMALL", _PATH_HOST_CROSS_RSDPG_256_SMALL_KEY_FILE },
+		{ "oviii", "OV_III", _PATH_HOST_OV_III_KEY_FILE },
+		{ "ovv", "OV_V", _PATH_HOST_OV_V_KEY_FILE },
+		{ "oviiipkc", "OV_III_PKC", _PATH_HOST_OV_III_PKC_KEY_FILE },
+		{ "ovvpkc", "OV_V_PKC", _PATH_HOST_OV_V_PKC_KEY_FILE },
+		{ "oviiipkcskc", "OV_III_PKC_SKC", _PATH_HOST_OV_III_PKC_SKC_KEY_FILE },
+		{ "ovvpkcskc", "OV_V_PKC_SKC", _PATH_HOST_OV_V_PKC_SKC_KEY_FILE },
 #ifdef WITH_OPENSSL
 		{ "rsa3072_falcon512", "RSA3072_FALCON_512", _PATH_HOST_RSA3072_FALCON_512_KEY_FILE },
 		{ "rsa3072_sphincssha2128fsimple", "RSA3072_SPHINCS_SHA2_128F_SIMPLE", _PATH_HOST_RSA3072_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE },
@@ -1215,6 +1395,24 @@ do_gen_all_hostkeys(struct passwd *pw)
 		{ "ecdsa_nistp256_mayo2", "ECDSA_NISTP256_MAYO_2", _PATH_HOST_ECDSA_NISTP256_MAYO_2_KEY_FILE },
 		{ "ecdsa_nistp384_mayo3", "ECDSA_NISTP384_MAYO_3", _PATH_HOST_ECDSA_NISTP384_MAYO_3_KEY_FILE },
 		{ "ecdsa_nistp521_mayo5", "ECDSA_NISTP521_MAYO_5", _PATH_HOST_ECDSA_NISTP521_MAYO_5_KEY_FILE },
+		{ "ecdsa_nistp384_crossrsdp192balanced", "ECDSA_NISTP384_CROSS_RSDP_192_BALANCED", _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED_KEY_FILE },
+		{ "ecdsa_nistp384_crossrsdp192fast", "ECDSA_NISTP384_CROSS_RSDP_192_FAST", _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_FAST_KEY_FILE },
+		{ "ecdsa_nistp384_crossrsdp192small", "ECDSA_NISTP384_CROSS_RSDP_192_SMALL", _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_SMALL_KEY_FILE },
+		{ "ecdsa_nistp521_crossrsdp256balanced", "ECDSA_NISTP521_CROSS_RSDP_256_BALANCED", _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED_KEY_FILE },
+		{ "ecdsa_nistp521_crossrsdp256fast", "ECDSA_NISTP521_CROSS_RSDP_256_FAST", _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_FAST_KEY_FILE },
+		{ "ecdsa_nistp521_crossrsdp256small", "ECDSA_NISTP521_CROSS_RSDP_256_SMALL", _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_SMALL_KEY_FILE },
+		{ "ecdsa_nistp384_crossrsdpg192balanced", "ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED", _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED_KEY_FILE },
+		{ "ecdsa_nistp384_crossrsdpg192fast", "ECDSA_NISTP384_CROSS_RSDPG_192_FAST", _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_FAST_KEY_FILE },
+		{ "ecdsa_nistp384_crossrsdpg192small", "ECDSA_NISTP384_CROSS_RSDPG_192_SMALL", _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL_KEY_FILE },
+		{ "ecdsa_nistp521_crossrsdpg256balanced", "ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED", _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED_KEY_FILE },
+		{ "ecdsa_nistp521_crossrsdpg256fast", "ECDSA_NISTP521_CROSS_RSDPG_256_FAST", _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_FAST_KEY_FILE },
+		{ "ecdsa_nistp521_crossrsdpg256small", "ECDSA_NISTP521_CROSS_RSDPG_256_SMALL", _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL_KEY_FILE },
+		{ "ecdsa_nistp384_oviii", "ECDSA_NISTP384_OV_III", _PATH_HOST_ECDSA_NISTP384_OV_III_KEY_FILE },
+		{ "ecdsa_nistp521_ovv", "ECDSA_NISTP521_OV_V", _PATH_HOST_ECDSA_NISTP521_OV_V_KEY_FILE },
+		{ "ecdsa_nistp384_oviiipkc", "ECDSA_NISTP384_OV_III_PKC", _PATH_HOST_ECDSA_NISTP384_OV_III_PKC_KEY_FILE },
+		{ "ecdsa_nistp521_ovvpkc", "ECDSA_NISTP521_OV_V_PKC", _PATH_HOST_ECDSA_NISTP521_OV_V_PKC_KEY_FILE },
+		{ "ecdsa_nistp384_oviiipkcskc", "ECDSA_NISTP384_OV_III_PKC_SKC", _PATH_HOST_ECDSA_NISTP384_OV_III_PKC_SKC_KEY_FILE },
+		{ "ecdsa_nistp521_ovvpkcskc", "ECDSA_NISTP521_OV_V_PKC_SKC", _PATH_HOST_ECDSA_NISTP521_OV_V_PKC_SKC_KEY_FILE },
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEY_TYPES_END
@@ -1724,6 +1922,24 @@ do_change_comment(struct passwd *pw, const char *identity_comment)
 	    private->type != KEY_MAYO_2 &&
 	    private->type != KEY_MAYO_3 &&
 	    private->type != KEY_MAYO_5 &&
+	    private->type != KEY_CROSS_RSDP_192_BALANCED &&
+	    private->type != KEY_CROSS_RSDP_192_FAST &&
+	    private->type != KEY_CROSS_RSDP_192_SMALL &&
+	    private->type != KEY_CROSS_RSDP_256_BALANCED &&
+	    private->type != KEY_CROSS_RSDP_256_FAST &&
+	    private->type != KEY_CROSS_RSDP_256_SMALL &&
+	    private->type != KEY_CROSS_RSDPG_192_BALANCED &&
+	    private->type != KEY_CROSS_RSDPG_192_FAST &&
+	    private->type != KEY_CROSS_RSDPG_192_SMALL &&
+	    private->type != KEY_CROSS_RSDPG_256_BALANCED &&
+	    private->type != KEY_CROSS_RSDPG_256_FAST &&
+	    private->type != KEY_CROSS_RSDPG_256_SMALL &&
+	    private->type != KEY_OV_III &&
+	    private->type != KEY_OV_V &&
+	    private->type != KEY_OV_III_PKC &&
+	    private->type != KEY_OV_V_PKC &&
+	    private->type != KEY_OV_III_PKC_SKC &&
+	    private->type != KEY_OV_V_PKC_SKC &&
 #ifdef WITH_OPENSSL
 	    private->type != KEY_RSA3072_FALCON_512 &&
 	    private->type != KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE &&
@@ -1740,6 +1956,24 @@ do_change_comment(struct passwd *pw, const char *identity_comment)
 	    private->type != KEY_ECDSA_NISTP256_MAYO_2 &&
 	    private->type != KEY_ECDSA_NISTP384_MAYO_3 &&
 	    private->type != KEY_ECDSA_NISTP521_MAYO_5 &&
+	    private->type != KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED &&
+	    private->type != KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST &&
+	    private->type != KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL &&
+	    private->type != KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED &&
+	    private->type != KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST &&
+	    private->type != KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL &&
+	    private->type != KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED &&
+	    private->type != KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST &&
+	    private->type != KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL &&
+	    private->type != KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED &&
+	    private->type != KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST &&
+	    private->type != KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL &&
+	    private->type != KEY_ECDSA_NISTP384_OV_III &&
+	    private->type != KEY_ECDSA_NISTP521_OV_V &&
+	    private->type != KEY_ECDSA_NISTP384_OV_III_PKC &&
+	    private->type != KEY_ECDSA_NISTP521_OV_V_PKC &&
+	    private->type != KEY_ECDSA_NISTP384_OV_III_PKC_SKC &&
+	    private->type != KEY_ECDSA_NISTP521_OV_V_PKC_SKC &&
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_CHECK_PRIVATE_KEY_TYPE_END
@@ -4035,6 +4269,114 @@ main(int argc, char **argv)
 			    print_generic, opts, nopts);
 			n += do_print_resource_record(pw,
 			    _PATH_HOST_ECDSA_NISTP521_MAYO_5_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDP_192_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDP_192_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDP_192_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDP_256_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDP_256_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDP_256_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDPG_192_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDPG_192_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDPG_192_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDPG_256_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDPG_256_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_FAST_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_CROSS_RSDPG_256_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_OV_III_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_OV_III_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_OV_V_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_OV_V_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_OV_III_PKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_OV_III_PKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_OV_V_PKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_OV_V_PKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_OV_III_PKC_SKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_OV_III_PKC_SKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_OV_V_PKC_SKC_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_OV_V_PKC_SKC_KEY_FILE, rr_hostname,
 			    print_generic, opts, nopts);
 ///// OQS_TEMPLATE_FRAGMENT_PRINT_RESOURCE_RECORDS_END
 			if (n == 0)

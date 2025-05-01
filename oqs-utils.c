@@ -39,6 +39,42 @@ int oqs_utils_is_ecdsa_hybrid(int keytype) {
             return 1;
         case KEY_ECDSA_NISTP521_MAYO_5:
             return 1;
+        case KEY_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED:
+            return 1;
+        case KEY_ECDSA_NISTP384_CROSS_RSDP_192_FAST:
+            return 1;
+        case KEY_ECDSA_NISTP384_CROSS_RSDP_192_SMALL:
+            return 1;
+        case KEY_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED:
+            return 1;
+        case KEY_ECDSA_NISTP521_CROSS_RSDP_256_FAST:
+            return 1;
+        case KEY_ECDSA_NISTP521_CROSS_RSDP_256_SMALL:
+            return 1;
+        case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED:
+            return 1;
+        case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_FAST:
+            return 1;
+        case KEY_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL:
+            return 1;
+        case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED:
+            return 1;
+        case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_FAST:
+            return 1;
+        case KEY_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL:
+            return 1;
+        case KEY_ECDSA_NISTP384_OV_III:
+            return 1;
+        case KEY_ECDSA_NISTP521_OV_V:
+            return 1;
+        case KEY_ECDSA_NISTP384_OV_III_PKC:
+            return 1;
+        case KEY_ECDSA_NISTP521_OV_V_PKC:
+            return 1;
+        case KEY_ECDSA_NISTP384_OV_III_PKC_SKC:
+            return 1;
+        case KEY_ECDSA_NISTP521_OV_V_PKC_SKC:
+            return 1;
 ///// OQS_TEMPLATE_FRAGMENT_LIST_ECDSA_HYBRIDS_END
     }
     return 0;

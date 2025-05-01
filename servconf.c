@@ -317,6 +317,42 @@ fill_default_server_options(ServerOptions *options)
 		    _PATH_HOST_MAYO_3_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_MAYO_5_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDP_192_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDP_192_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDP_192_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDP_256_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDP_256_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDP_256_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDPG_192_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDPG_192_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDPG_192_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDPG_256_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDPG_256_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_CROSS_RSDPG_256_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_OV_III_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_OV_V_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_OV_III_PKC_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_OV_V_PKC_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_OV_III_PKC_SKC_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_OV_V_PKC_SKC_KEY_FILE, 0);
 #ifdef WITH_OPENSSL
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_RSA3072_FALCON_512_KEY_FILE, 0);
@@ -347,6 +383,42 @@ fill_default_server_options(ServerOptions *options)
 		    _PATH_HOST_ECDSA_NISTP384_MAYO_3_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_ECDSA_NISTP521_MAYO_5_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDP_192_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDP_256_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_CROSS_RSDPG_192_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_BALANCED_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_FAST_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_CROSS_RSDPG_256_SMALL_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_OV_III_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_OV_V_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_OV_III_PKC_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_OV_V_PKC_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_OV_III_PKC_SKC_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_OV_V_PKC_SKC_KEY_FILE, 0);
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_SERVER_ADD_HOSTKEYS_END

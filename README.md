@@ -91,11 +91,13 @@ Algorithms which involve ML-KEM are provided using the names as proposed in [dra
 The following digital signature algorithms from liboqs are supported (assuming they have been enabled in liboqs). Note that only select L3 signature variants are enabled by default. In general, algorithms that are enabled by default are marked with an asterisk, and should you wish to enable additional variants, consult [the "Code Generation" section of the documentation in the wiki](https://github.com/open-quantum-safe/openssh/wiki/Using-liboqs-supported-algorithms-in-the-fork#code-generation).
 
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_ALL_SIGS_START -->
+- **CROSS**: `crossrsdp128balanced`, `crossrsdp128fast`, `crossrsdp128small`, `crossrsdp192balanced`\*, `crossrsdp192fast`\*, `crossrsdp192small`\*, `crossrsdp256balanced`\*, `crossrsdp256fast`\*, `crossrsdp256small`\*, `crossrsdpg128balanced`, `crossrsdpg128fast`, `crossrsdpg128small`, `crossrsdpg192balanced`\*, `crossrsdpg192fast`\*, `crossrsdpg192small`\*, `crossrsdpg256balanced`\*, `crossrsdpg256fast`\*, `crossrsdpg256small`\*
 - **Dilithium**: `dilithium2`, `dilithium3`, `dilithium5`
 - **Falcon**: `falcon512`\*, `falcon1024`\*, `falconpadded512`, `falconpadded1024`
 - **MAYO**: `mayo1`, `mayo2`\*, `mayo3`\*, `mayo5`\*
 - **ML-DSA**: `mldsa44`\*, `mldsa65`\*, `mldsa87`\*
 - **SPHINCS**: `sphincssha2128fsimple`\*, `sphincssha2128ssimple`, `sphincsshake128fsimple`, `sphincsshake128ssimple`, `sphincssha2192fsimple`, `sphincssha2192ssimple`, `sphincsshake192fsimple`, `sphincsshake192ssimple`, `sphincssha2256fsimple`\*, `sphincssha2256ssimple`, `sphincsshake256fsimple`, `sphincsshake256ssimple`
+- **UOV**: `ovis`, `ovip`, `oviii`\*, `ovv`\*, `ovispkc`, `ovippkc`, `oviiipkc`\*, `ovvpkc`\*, `ovispkcskc`, `ovippkcskc`, `oviiipkcskc`\*, `ovvpkcskc`\*
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_ALL_SIGS_END -->
 
 
