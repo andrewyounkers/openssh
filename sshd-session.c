@@ -109,6 +109,9 @@
 #include "srclimit.h"
 #include "dh.h"
 
+#include "oqs/oqs.h"
+#include "oqs-utils.h"
+
 /* Re-exec fds */
 #define REEXEC_DEVCRYPTO_RESERVED_FD	(STDERR_FILENO + 1)
 #define REEXEC_CONFIG_PASS_FD		(STDERR_FILENO + 2)
