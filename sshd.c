@@ -93,6 +93,7 @@
 #include "sk-api.h"
 #include "addr.h"
 #include "srclimit.h"
+#include "atomicio.h"
 #include "dh.h"
 
 #include "oqs/oqs.h"

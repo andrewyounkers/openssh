@@ -619,12 +619,6 @@ int	 kex_kem_ml_kem_1024_ecdh_nistp384_dec(struct kex *, const struct sshbuf *, 
 #endif /* WITH_OPENSSL */
 ///// OQS_TEMPLATE_FRAGMENT_DECLARE_KEX_PROTOTYPES_END
 
-int	 kex_kem_mlkem768x25519_keypair(struct kex *);
-int	 kex_kem_mlkem768x25519_enc(struct kex *, const struct sshbuf *,
-    struct sshbuf **, struct sshbuf **);
-int	 kex_kem_mlkem768x25519_dec(struct kex *, const struct sshbuf *,
-    struct sshbuf **);
-
 int	 kex_dh_keygen(struct kex *);
 int	 kex_dh_compute_key(struct kex *, BIGNUM *, struct sshbuf *);
 
