@@ -1,4 +1,4 @@
-/* $OpenBSD: kex.h,v 1.122 2024/02/02 00:13:34 djm Exp $ */
+/* $OpenBSD: kex.h,v 1.126 2024/09/02 12:13:56 djm Exp $ */
 
 /*
  * Copyright (c) 2000, 2001 Markus Friedl.  All rights reserved.
@@ -131,8 +131,6 @@
 ///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEX_PRETTY_NAMES_END
 
 #define COMP_NONE	0
-/* pre-auth compression (COMP_ZLIB) is only supported in the client */
-#define COMP_ZLIB	1
 #define COMP_DELAYED	2
 
 #define CURVE25519_SIZE 32
@@ -158,7 +156,7 @@ enum kex_modes {
 };
 
 enum kex_exchange {
-	KEX_DH_GRP1_SHA1,
+	KEX_DH_GRP1_SHA1 = 1,
 	KEX_DH_GRP14_SHA1,
 	KEX_DH_GRP14_SHA256,
 	KEX_DH_GRP16_SHA512,
@@ -311,14 +309,20 @@ struct kex {
 	u_char c25519_client_key[CURVE25519_SIZE]; /* 25519 + KEM */
 	u_char c25519_client_pubkey[CURVE25519_SIZE]; /* 25519 */
 	u_char sntrup761_client_key[crypto_kem_sntrup761_SECRETKEYBYTES]; /* KEM */
+	u_char mlkem768_client_key[crypto_kem_mlkem768_SECRETKEYBYTES]; /* KEM */
 	u_char* oqs_client_key; /* OQS KEM key */
 	size_t oqs_client_key_size; /* size of OQS KEM key */
 	struct sshbuf *client_pub;
 };
 
+int	 kex_name_valid(const char *);
+u_int	 kex_type_from_name(const char *);
+int	 kex_hash_from_name(const char *);
+int	 kex_nid_from_name(const char *);
 int	 kex_names_valid(const char *);
 char	*kex_alg_list(char);
 char	*kex_names_cat(const char *, const char *);
+int	 kex_has_any_alg(const char *, const char *);
 int	 kex_assemble_names(char **, const char *, const char *);
 void	 kex_proposal_populate_entries(struct ssh *, char *prop[PROPOSAL_MAX],
     const char *, const char *, const char *, const char *, const char *);

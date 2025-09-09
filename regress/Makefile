@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.133 2024/01/11 04:50:28 djm Exp $
+#	$OpenBSD: Makefile,v 1.136 2025/03/11 07:50:20 dtucker Exp $
 
 tests:		prep file-tests t-exec unit
 
@@ -65,6 +65,7 @@ LTESTS= 	connect \
 		sftp-batch \
 		sftp-glob \
 		sftp-perm \
+		sftp-resume \
 		sftp-uri \
 		reconfigure \
 		dynamic-forward \
@@ -109,7 +110,9 @@ LTESTS= 	connect \
 		connection-timeout \
 		match-subsystem \
 		agent-pkcs11-restrict \
-		agent-pkcs11-cert
+		agent-pkcs11-cert \
+		penalty \
+		penalty-expire
 
 INTEROP_TESTS=	putty-transfer putty-ciphers putty-kex conch-ciphers
 INTEROP_TESTS+=	dropbear-ciphers dropbear-kex
