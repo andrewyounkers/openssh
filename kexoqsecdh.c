@@ -220,6 +220,7 @@ static int kex_kem_generic_with_ec_enc(OQS_KEM *kem,
 
   /* generate and encrypt KEM key with client key */
   if (OQS_KEM_encaps(kem, ciphertext, kem_key, client_pub) != OQS_SUCCESS) {
+    r = SSH_ERR_LIBCRYPTO_ERROR;
     goto out;
   }
 
@@ -319,6 +320,7 @@ static int kex_kem_generic_with_ec_dec(OQS_KEM *kem,
       goto out;
     /* decapsulate the post-quantum secret */
     if (OQS_KEM_decaps(kem, kem_key, ciphertext, kex->oqs_client_key) != OQS_SUCCESS) {
+      r = SSH_ERR_LIBCRYPTO_ERROR;
       goto out;
     }
 
