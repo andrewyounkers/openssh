@@ -1,4 +1,4 @@
-/* $OpenBSD: kex.c,v 1.187 2024/08/23 04:51:00 deraadt Exp $ */
+/* $OpenBSD: kex.c,v 1.189 2025/09/15 04:40:34 djm Exp $ */
 /*
  * Copyright (c) 2000, 2001 Markus Friedl.  All rights reserved.
  *
@@ -33,9 +33,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#ifdef HAVE_POLL_H
 #include <poll.h>
-#endif
 
 #ifdef WITH_OPENSSL
 #include <openssl/crypto.h>
@@ -677,8 +675,6 @@ kex_input_newkeys(int type, u_int32_t seq, struct ssh *ssh)
 	kex->flags &= ~KEX_INITIAL;
 	sshbuf_reset(kex->peer);
 	kex->flags &= ~KEX_INIT_SENT;
-	free(kex->name);
-	kex->name = NULL;
 	return 0;
 }
 
@@ -734,6 +730,8 @@ kex_input_kexinit(int type, u_int32_t seq, struct ssh *ssh)
 		error_f("no kex");
 		return SSH_ERR_INTERNAL_ERROR;
 	}
+	free(kex->name);
+	kex->name = NULL;
 	ssh_dispatch_set(ssh, SSH2_MSG_KEXINIT, &kex_protocol_error);
 	ptr = sshpkt_ptr(ssh, &dlen);
 	if ((r = sshbuf_put(kex->peer, ptr, dlen)) != 0)
@@ -856,10 +854,7 @@ kex_free(struct kex *kex)
 	free(kex->failed_choice);
 	free(kex->hostkey_alg);
 	free(kex->name);
-	if (kex->oqs_client_key) {
-	  free(kex->oqs_client_key);
-	  kex->oqs_client_key = NULL;
-	}
+	free(kex->server_sig_algs);
 	free(kex);
 }
 
