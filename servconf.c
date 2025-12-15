@@ -312,6 +312,60 @@ fill_default_server_options(ServerOptions *options)
 #endif
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_ED25519_KEY_FILE, 0);
+///// OQS_TEMPLATE_FRAGMENT_SERVER_ADD_HOSTKEYS_START
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_FALCON_512_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_FALCON_1024_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ML_DSA_44_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ML_DSA_65_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ML_DSA_87_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_MAYO_2_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_MAYO_3_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_MAYO_5_KEY_FILE, 0);
+#ifdef WITH_OPENSSL
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_RSA3072_FALCON_512_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_RSA3072_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_RSA3072_ML_DSA_44_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_RSA3072_MAYO_2_KEY_FILE, 0);
+#ifdef OPENSSL_HAS_ECC
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP256_FALCON_512_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_FALCON_1024_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP256_ML_DSA_44_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_ML_DSA_65_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_ML_DSA_87_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP256_MAYO_2_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP384_MAYO_3_KEY_FILE, 0);
+		servconf_add_hostkey("[default]", 0, options,
+		    _PATH_HOST_ECDSA_NISTP521_MAYO_5_KEY_FILE, 0);
+#endif /* OPENSSL_HAS_ECC */
+#endif /* WITH_OPENSSL */
+///// OQS_TEMPLATE_FRAGMENT_SERVER_ADD_HOSTKEYS_END
 	}
 	/* No certificates by default */
 	if (options->num_ports == 0)

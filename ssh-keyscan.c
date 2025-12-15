@@ -64,9 +64,34 @@ int ssh_port = SSH_DEFAULT_PORT;
 #define KT_ED25519	(1<<2)
 #define KT_ECDSA_SK	(1<<4)
 #define KT_ED25519_SK	(1<<5)
-
+///// OQS_TEMPLATE_FRAGMENT_ASSIGN_KT_MASKS_START
+#define KT_FALCON_512 ((uint64_t)1<<7)
+#define KT_RSA3072_FALCON_512 ((uint64_t)1<<8)
+#define KT_ECDSA_NISTP256_FALCON_512 ((uint64_t)1<<9)
+#define KT_FALCON_1024 ((uint64_t)1<<10)
+#define KT_ECDSA_NISTP521_FALCON_1024 ((uint64_t)1<<11)
+#define KT_SPHINCS_SHA2_128F_SIMPLE ((uint64_t)1<<12)
+#define KT_RSA3072_SPHINCS_SHA2_128F_SIMPLE ((uint64_t)1<<13)
+#define KT_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE ((uint64_t)1<<14)
+#define KT_SPHINCS_SHA2_256F_SIMPLE ((uint64_t)1<<15)
+#define KT_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE ((uint64_t)1<<16)
+#define KT_ML_DSA_44 ((uint64_t)1<<17)
+#define KT_RSA3072_ML_DSA_44 ((uint64_t)1<<18)
+#define KT_ECDSA_NISTP256_ML_DSA_44 ((uint64_t)1<<19)
+#define KT_ML_DSA_65 ((uint64_t)1<<20)
+#define KT_ECDSA_NISTP384_ML_DSA_65 ((uint64_t)1<<21)
+#define KT_ML_DSA_87 ((uint64_t)1<<22)
+#define KT_ECDSA_NISTP521_ML_DSA_87 ((uint64_t)1<<23)
+#define KT_MAYO_2 ((uint64_t)1<<24)
+#define KT_RSA3072_MAYO_2 ((uint64_t)1<<25)
+#define KT_ECDSA_NISTP256_MAYO_2 ((uint64_t)1<<26)
+#define KT_MAYO_3 ((uint64_t)1<<27)
+#define KT_ECDSA_NISTP384_MAYO_3 ((uint64_t)1<<28)
+#define KT_MAYO_5 ((uint64_t)1<<29)
+#define KT_ECDSA_NISTP521_MAYO_5 ((uint64_t)1<<30)
+#define KT_MAX ((uint64_t)1<<30)
+///// OQS_TEMPLATE_FRAGMENT_ASSIGN_KT_MASKS_END
 #define KT_MIN		KT_RSA
-#define KT_MAX		KT_ED25519_SK
 
 int get_cert = 0;
 uint64_t get_keytypes = KT_RSA|KT_ECDSA|KT_ED25519|KT_ECDSA_SK|KT_ED25519_SK|\

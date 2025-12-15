@@ -67,6 +67,9 @@
 #include "ssh-pkcs11.h"
 #endif
 
+#include <oqs/oqs.h>
+#include "oqs-utils.h"
+
 #define DEFAULT_KEY_TYPE_NAME "ed25519"
 
 /*
@@ -308,6 +311,84 @@ ask_filename(struct passwd *pw, const char *prompt)
 		case KEY_ED25519_SK_CERT:
 			name = _PATH_SSH_CLIENT_ID_ED25519_SK;
 			break;
+///// OQS_TEMPLATE_FRAGMENT_HANDLE_ID_FILES_START
+		  case KEY_FALCON_512:
+		    name = _PATH_SSH_CLIENT_ID_FALCON_512;
+		    break;
+		  case KEY_FALCON_1024:
+		    name = _PATH_SSH_CLIENT_ID_FALCON_1024;
+		    break;
+		  case KEY_SPHINCS_SHA2_128F_SIMPLE:
+		    name = _PATH_SSH_CLIENT_ID_SPHINCS_SHA2_128F_SIMPLE;
+		    break;
+		  case KEY_SPHINCS_SHA2_256F_SIMPLE:
+		    name = _PATH_SSH_CLIENT_ID_SPHINCS_SHA2_256F_SIMPLE;
+		    break;
+		  case KEY_ML_DSA_44:
+		    name = _PATH_SSH_CLIENT_ID_ML_DSA_44;
+		    break;
+		  case KEY_ML_DSA_65:
+		    name = _PATH_SSH_CLIENT_ID_ML_DSA_65;
+		    break;
+		  case KEY_ML_DSA_87:
+		    name = _PATH_SSH_CLIENT_ID_ML_DSA_87;
+		    break;
+		  case KEY_MAYO_2:
+		    name = _PATH_SSH_CLIENT_ID_MAYO_2;
+		    break;
+		  case KEY_MAYO_3:
+		    name = _PATH_SSH_CLIENT_ID_MAYO_3;
+		    break;
+		  case KEY_MAYO_5:
+		    name = _PATH_SSH_CLIENT_ID_MAYO_5;
+		    break;
+#ifdef WITH_OPENSSL
+		  case KEY_RSA3072_FALCON_512:
+		    name = _PATH_SSH_CLIENT_ID_RSA3072_FALCON_512;
+		    break;
+		  case KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
+		    name = _PATH_SSH_CLIENT_ID_RSA3072_SPHINCS_SHA2_128F_SIMPLE;
+		    break;
+		  case KEY_RSA3072_ML_DSA_44:
+		    name = _PATH_SSH_CLIENT_ID_RSA3072_ML_DSA_44;
+		    break;
+		  case KEY_RSA3072_MAYO_2:
+		    name = _PATH_SSH_CLIENT_ID_RSA3072_MAYO_2;
+		    break;
+#ifdef OPENSSL_HAS_ECC
+		  case KEY_ECDSA_NISTP256_FALCON_512:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP256_FALCON_512;
+		    break;
+		  case KEY_ECDSA_NISTP521_FALCON_1024:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_FALCON_1024;
+		    break;
+		  case KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE;
+		    break;
+		  case KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE;
+		    break;
+		  case KEY_ECDSA_NISTP256_ML_DSA_44:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP256_ML_DSA_44;
+		    break;
+		  case KEY_ECDSA_NISTP384_ML_DSA_65:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_ML_DSA_65;
+		    break;
+		  case KEY_ECDSA_NISTP521_ML_DSA_87:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_ML_DSA_87;
+		    break;
+		  case KEY_ECDSA_NISTP256_MAYO_2:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP256_MAYO_2;
+		    break;
+		  case KEY_ECDSA_NISTP384_MAYO_3:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP384_MAYO_3;
+		    break;
+		  case KEY_ECDSA_NISTP521_MAYO_5:
+		    name = _PATH_SSH_CLIENT_ID_ECDSA_NISTP521_MAYO_5;
+		    break;
+#endif /* OPENSSL_HAS_ECC */
+#endif /* WITH_OPENSSL */
+///// OQS_TEMPLATE_FRAGMENT_HANDLE_ID_FILES_END
 		default:
 			fatal("bad key type");
 		}
@@ -1050,6 +1131,36 @@ do_gen_all_hostkeys(struct passwd *pw)
 #endif /* OPENSSL_HAS_ECC */
 #endif /* WITH_OPENSSL */
 		{ "ed25519", "ED25519",_PATH_HOST_ED25519_KEY_FILE },
+///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEY_TYPES_START
+		{ "falcon512", "FALCON_512", _PATH_HOST_FALCON_512_KEY_FILE },
+		{ "falcon1024", "FALCON_1024", _PATH_HOST_FALCON_1024_KEY_FILE },
+		{ "sphincssha2128fsimple", "SPHINCS_SHA2_128F_SIMPLE", _PATH_HOST_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE },
+		{ "sphincssha2256fsimple", "SPHINCS_SHA2_256F_SIMPLE", _PATH_HOST_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE },
+		{ "mldsa-44", "ML_DSA_44", _PATH_HOST_ML_DSA_44_KEY_FILE },
+		{ "mldsa-65", "ML_DSA_65", _PATH_HOST_ML_DSA_65_KEY_FILE },
+		{ "mldsa-87", "ML_DSA_87", _PATH_HOST_ML_DSA_87_KEY_FILE },
+		{ "mayo2", "MAYO_2", _PATH_HOST_MAYO_2_KEY_FILE },
+		{ "mayo3", "MAYO_3", _PATH_HOST_MAYO_3_KEY_FILE },
+		{ "mayo5", "MAYO_5", _PATH_HOST_MAYO_5_KEY_FILE },
+#ifdef WITH_OPENSSL
+		{ "rsa3072_falcon512", "RSA3072_FALCON_512", _PATH_HOST_RSA3072_FALCON_512_KEY_FILE },
+		{ "rsa3072_sphincssha2128fsimple", "RSA3072_SPHINCS_SHA2_128F_SIMPLE", _PATH_HOST_RSA3072_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE },
+		{ "rsa3072_mldsa-44", "RSA3072_ML_DSA_44", _PATH_HOST_RSA3072_ML_DSA_44_KEY_FILE },
+		{ "rsa3072_mayo2", "RSA3072_MAYO_2", _PATH_HOST_RSA3072_MAYO_2_KEY_FILE },
+#ifdef OPENSSL_HAS_ECC
+		{ "ecdsa_nistp256_falcon512", "ECDSA_NISTP256_FALCON_512", _PATH_HOST_ECDSA_NISTP256_FALCON_512_KEY_FILE },
+		{ "ecdsa_nistp521_falcon1024", "ECDSA_NISTP521_FALCON_1024", _PATH_HOST_ECDSA_NISTP521_FALCON_1024_KEY_FILE },
+		{ "ecdsa_nistp256_sphincssha2128fsimple", "ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE", _PATH_HOST_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE },
+		{ "ecdsa_nistp521_sphincssha2256fsimple", "ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE", _PATH_HOST_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE },
+		{ "ecdsa_nistp256_mldsa-44", "ECDSA_NISTP256_ML_DSA_44", _PATH_HOST_ECDSA_NISTP256_ML_DSA_44_KEY_FILE },
+		{ "ecdsa_nistp384_mldsa-65", "ECDSA_NISTP384_ML_DSA_65", _PATH_HOST_ECDSA_NISTP384_ML_DSA_65_KEY_FILE },
+		{ "ecdsa_nistp521_mldsa-87", "ECDSA_NISTP521_ML_DSA_87", _PATH_HOST_ECDSA_NISTP521_ML_DSA_87_KEY_FILE },
+		{ "ecdsa_nistp256_mayo2", "ECDSA_NISTP256_MAYO_2", _PATH_HOST_ECDSA_NISTP256_MAYO_2_KEY_FILE },
+		{ "ecdsa_nistp384_mayo3", "ECDSA_NISTP384_MAYO_3", _PATH_HOST_ECDSA_NISTP384_MAYO_3_KEY_FILE },
+		{ "ecdsa_nistp521_mayo5", "ECDSA_NISTP521_MAYO_5", _PATH_HOST_ECDSA_NISTP521_MAYO_5_KEY_FILE },
+#endif /* OPENSSL_HAS_ECC */
+#endif /* WITH_OPENSSL */
+///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEY_TYPES_END
 		{ NULL, NULL, NULL }
 	};
 
@@ -1545,6 +1656,36 @@ do_change_comment(struct passwd *pw, const char *identity_comment)
 	}
 
 	if (private->type != KEY_ED25519 &&
+	    ///// OQS_TEMPLATE_FRAGMENT_CHECK_PRIVATE_KEY_TYPE_START
+	    private->type != KEY_FALCON_512 &&
+	    private->type != KEY_FALCON_1024 &&
+	    private->type != KEY_SPHINCS_SHA2_128F_SIMPLE &&
+	    private->type != KEY_SPHINCS_SHA2_256F_SIMPLE &&
+	    private->type != KEY_ML_DSA_44 &&
+	    private->type != KEY_ML_DSA_65 &&
+	    private->type != KEY_ML_DSA_87 &&
+	    private->type != KEY_MAYO_2 &&
+	    private->type != KEY_MAYO_3 &&
+	    private->type != KEY_MAYO_5 &&
+#ifdef WITH_OPENSSL
+	    private->type != KEY_RSA3072_FALCON_512 &&
+	    private->type != KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE &&
+	    private->type != KEY_RSA3072_ML_DSA_44 &&
+	    private->type != KEY_RSA3072_MAYO_2 &&
+#ifdef OPENSSL_HAS_ECC
+	    private->type != KEY_ECDSA_NISTP256_FALCON_512 &&
+	    private->type != KEY_ECDSA_NISTP521_FALCON_1024 &&
+	    private->type != KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE &&
+	    private->type != KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE &&
+	    private->type != KEY_ECDSA_NISTP256_ML_DSA_44 &&
+	    private->type != KEY_ECDSA_NISTP384_ML_DSA_65 &&
+	    private->type != KEY_ECDSA_NISTP521_ML_DSA_87 &&
+	    private->type != KEY_ECDSA_NISTP256_MAYO_2 &&
+	    private->type != KEY_ECDSA_NISTP384_MAYO_3 &&
+	    private->type != KEY_ECDSA_NISTP521_MAYO_5 &&
+#endif /* OPENSSL_HAS_ECC */
+#endif /* WITH_OPENSSL */
+///// OQS_TEMPLATE_FRAGMENT_CHECK_PRIVATE_KEY_TYPE_END
 	    private_key_format != SSHKEY_PRIVATE_OPENSSH) {
 		error("Comments are only supported for keys stored in "
 		    "the new format (-o).");
@@ -3273,7 +3414,9 @@ usage(void)
 	fprintf(stderr,
 	    "usage: ssh-keygen [-q] [-a rounds] [-b bits] [-C comment] [-f output_keyfile]\n"
 	    "                  [-m format] [-N new_passphrase] [-O option]\n"
-	    "                  [-t ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa]\n"
+	    "                  [-t ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa"
+		" |\n                  OQS-fork added algorithms (see README.md)"
+		" ]\n"
 	    "                  [-w provider] [-Z cipher]\n"
 	    "       ssh-keygen -p [-a rounds] [-f keyfile] [-m format] [-N new_passphrase]\n"
 	    "                   [-P old_passphrase] [-Z cipher]\n"
@@ -3766,6 +3909,80 @@ main(int argc, char **argv)
 			n += do_print_resource_record(pw,
 			    _PATH_HOST_ED25519_KEY_FILE, rr_hostname,
 			    print_generic, opts, nopts);
+///// OQS_TEMPLATE_FRAGMENT_PRINT_RESOURCE_RECORDS_START
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_FALCON_512_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_RSA3072_FALCON_512_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP256_FALCON_512_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_FALCON_1024_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_FALCON_1024_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_RSA3072_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ML_DSA_44_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_RSA3072_ML_DSA_44_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP256_ML_DSA_44_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ML_DSA_65_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_ML_DSA_65_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ML_DSA_87_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_ML_DSA_87_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_MAYO_2_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_RSA3072_MAYO_2_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP256_MAYO_2_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_MAYO_3_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP384_MAYO_3_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_MAYO_5_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+			n += do_print_resource_record(pw,
+			    _PATH_HOST_ECDSA_NISTP521_MAYO_5_KEY_FILE, rr_hostname,
+			    print_generic, opts, nopts);
+///// OQS_TEMPLATE_FRAGMENT_PRINT_RESOURCE_RECORDS_END
 			if (n == 0)
 				fatal("no keys found.");
 			exit(0);

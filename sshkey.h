@@ -154,6 +154,10 @@ struct sshkey {
 	/* KEY_ED25519 and KEY_ED25519_SK */
 	u_char	*ed25519_sk;
 	u_char	*ed25519_pk;
+	u_char	*oqs_sk; /* post-quantum secret key */
+	size_t   oqs_sk_len; /* post-quantum secret length */
+	u_char	*oqs_pk; /* post-quantum public key */
+	size_t   oqs_pk_len; /* post-quantum public length */
 	/* KEY_ECDSA_SK and KEY_ED25519_SK */
 	char	*sk_application;
 	uint8_t	sk_flags;

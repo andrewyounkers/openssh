@@ -607,6 +607,7 @@ ssh_add_identity_constrained(int sock, struct sshkey *key,
 	case KEY_ED25519_CERT:
 	case KEY_ED25519_SK:
 	case KEY_ED25519_SK_CERT:
+	CASE_KEY_OQS:
 		type = constrained ?
 		    SSH2_AGENTC_ADD_ID_CONSTRAINED :
 		    SSH2_AGENTC_ADD_IDENTITY;

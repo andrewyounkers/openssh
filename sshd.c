@@ -91,6 +91,9 @@
 #endif
 #include "monitor_wrap.h"
 
+#include "oqs/oqs.h"
+#include "oqs-utils.h"
+
 /* Re-exec fds */
 #define REEXEC_DEVCRYPTO_RESERVED_FD	(STDERR_FILENO + 1)
 #define REEXEC_CONFIG_PASS_FD		(STDERR_FILENO + 2)
@@ -1664,6 +1667,8 @@ main(int ac, char **av)
 		case KEY_ED25519:
 		case KEY_ECDSA_SK:
 		case KEY_ED25519_SK:
+		CASE_KEY_OQS:
+		CASE_KEY_HYBRID:
 			if (have_agent || key != NULL)
 				sensitive_data.have_ssh2_key = 1;
 			break;

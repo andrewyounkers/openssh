@@ -855,6 +855,10 @@ kex_free(struct kex *kex)
 	free(kex->hostkey_alg);
 	free(kex->name);
 	free(kex->server_sig_algs);
+	if (kex->oqs_client_key) {
+	  free(kex->oqs_client_key);
+	  kex->oqs_client_key = NULL;
+	}
 	free(kex);
 }
 

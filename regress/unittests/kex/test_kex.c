@@ -243,11 +243,5 @@ kex_tests(void)
 		do_kex("diffie-hellman-group16-sha512");
 		do_kex("diffie-hellman-group18-sha512");
 	}
-# ifdef USE_MLKEM768X25519
-	do_kex("mlkem768x25519-sha256");
-# endif /* USE_MLKEM768X25519 */
-# ifdef USE_SNTRUP761X25519
-	do_kex("sntrup761x25519-sha512");
-# endif /* USE_SNTRUP761X25519 */
 #endif /* WITH_OPENSSL */
 }

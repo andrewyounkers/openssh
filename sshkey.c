@@ -178,6 +178,36 @@ const struct sshkey_impl * const keyimpls[] = {
 	&sshkey_rsa_sha512_impl,
 	&sshkey_rsa_sha512_cert_impl,
 #endif /* WITH_OPENSSL */
+///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEYTYPES_START
+	&sshkey_falcon512_impl,
+	&sshkey_falcon1024_impl,
+	&sshkey_sphincssha2128fsimple_impl,
+	&sshkey_sphincssha2256fsimple_impl,
+	&sshkey_mldsa44_impl,
+	&sshkey_mldsa65_impl,
+	&sshkey_mldsa87_impl,
+	&sshkey_mayo2_impl,
+	&sshkey_mayo3_impl,
+	&sshkey_mayo5_impl,
+#ifdef WITH_OPENSSL
+	&sshkey_rsa3072_falcon512_impl,
+	&sshkey_rsa3072_sphincssha2128fsimple_impl,
+	&sshkey_rsa3072_mldsa44_impl,
+	&sshkey_rsa3072_mayo2_impl,
+#ifdef OPENSSL_HAS_ECC
+	&sshkey_ecdsanistp256_falcon512_impl,
+	&sshkey_ecdsanistp521_falcon1024_impl,
+	&sshkey_ecdsanistp256_sphincssha2128fsimple_impl,
+	&sshkey_ecdsanistp521_sphincssha2256fsimple_impl,
+	&sshkey_ecdsanistp256_mldsa44_impl,
+	&sshkey_ecdsanistp384_mldsa65_impl,
+	&sshkey_ecdsanistp521_mldsa87_impl,
+	&sshkey_ecdsanistp256_mayo2_impl,
+	&sshkey_ecdsanistp384_mayo3_impl,
+	&sshkey_ecdsanistp521_mayo5_impl,
+#endif /* OPENSSL_HAS_ECC */
+#endif /* WITH_OPENSSL */
+///// OQS_TEMPLATE_FRAGMENT_DEFINE_KEYTYPES_END
 	NULL
 };
 
@@ -3667,10 +3697,18 @@ sshkey_parse_private_fileblob_type(struct sshbuf *blob, int type,
 	if (commentp != NULL)
 		*commentp = NULL;
 
-	r = sshkey_parse_private2(blob, type, passphrase, keyp, commentp);
-	/* Only fallback to PEM parser if a format error occurred. */
-	if (r != SSH_ERR_INVALID_FORMAT)
-		return r;
+	switch (type) {
+	CASE_KEY_OQS:
+	CASE_KEY_HYBRID:
+		/* No fallback for new-format-only keys */
+		return sshkey_parse_private2(blob, type, passphrase,
+		    keyp, commentp);
+	default:
+		r = sshkey_parse_private2(blob, type, passphrase, keyp,
+		    commentp);
+		/* Only fallback to PEM parser if a format error occurred. */
+		if (r != SSH_ERR_INVALID_FORMAT)
+			return r;
 #ifdef WITH_OPENSSL
 	return sshkey_parse_private_pem_fileblob(blob, type,
 	    passphrase, keyp);
