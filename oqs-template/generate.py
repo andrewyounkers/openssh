@@ -61,7 +61,6 @@ config = load_config()
 
 # kexs
 populate('kex-names.c', config, '/////')
-populate('kex.c', config, '/////')
 populate('kexgen.c', config, '/////')
 populate('kexoqs.c', config, '/////')
 populate('kexoqsecdh.c', config, '/////')
