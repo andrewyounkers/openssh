@@ -394,8 +394,9 @@ do_log(LogLevel level, int force, const char *suffix, const char *fmt,
 		vsnprintf(msgbuf, sizeof(msgbuf), fmt, args);
 	}
 	if (suffix != NULL) {
-		snprintf(fmtbuf, sizeof(fmtbuf), "%s: %s", msgbuf, suffix);
-		strlcpy(msgbuf, fmtbuf, sizeof(msgbuf));
+		int n = snprintf(fmtbuf, sizeof(fmtbuf), "%s: %s", msgbuf, suffix);
+		if (n >= 0 && (size_t)n < sizeof(fmtbuf))
+			strlcpy(msgbuf, fmtbuf, sizeof(msgbuf));
 	}
 	strnvis(fmtbuf, msgbuf, sizeof(fmtbuf),
 	    log_on_stderr ? LOG_STDERR_VIS : LOG_SYSLOG_VIS);
@@ -406,11 +407,12 @@ do_log(LogLevel level, int force, const char *suffix, const char *fmt,
 		tmp_handler(level, force, fmtbuf, log_handler_ctx);
 		log_handler = tmp_handler;
 	} else if (log_on_stderr) {
-		snprintf(msgbuf, sizeof msgbuf, "%s%s%.*s\r\n",
+		snprintf(msgbuf, sizeof msgbuf, "%s%s%.*s",
 		    (log_on_stderr > 1) ? progname : "",
 		    (log_on_stderr > 1) ? ": " : "",
 		    (int)sizeof msgbuf - 3, fmtbuf);
 		(void)write(log_stderr_fd, msgbuf, strlen(msgbuf));
+		(void)write(log_stderr_fd, "\r\n", 2);
 	} else {
 #if defined(HAVE_OPENLOG_R) && defined(SYSLOG_DATA_INIT)
 		openlog_r(progname, LOG_PID, log_facility, &sdata);
@@ -453,7 +455,7 @@ void
 sshlogv(const char *file, const char *func, int line, int showfunc,
     LogLevel level, const char *suffix, const char *fmt, va_list args)
 {
-	char tag[128], fmt2[MSGBUFSIZ + 128];
+	char tag[256], fmt2[MSGBUFSIZ + 256];
 	int forced = 0;
 	const char *cp;
 	size_t i;

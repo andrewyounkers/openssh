@@ -1526,11 +1526,11 @@ rsource(char *name, struct stat *statp)
 			continue;
 		if (!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, ".."))
 			continue;
-		if (strlen(name) + 1 + strlen(dp->d_name) >= sizeof(path) - 1) {
+		if (snprintf(path, sizeof path, "%s/%s", name, dp->d_name) >=
+		    (int)sizeof(path)) {
 			run_err("%s/%s: name too long", name, dp->d_name);
 			continue;
 		}
-		(void) snprintf(path, sizeof path, "%s/%s", name, dp->d_name);
 		vect[0] = path;
 		source(1, vect);
 	}

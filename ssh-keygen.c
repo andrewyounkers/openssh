@@ -454,7 +454,7 @@ do_convert_to_ssh2(struct passwd *pw, struct sshkey *k)
 
 	/* Comment + surrounds must fit into 72 chars (RFC 4716 sec 3.3) */
 	snprintf(comment, sizeof(comment),
-	    "%u-bit %s, converted by %s@%s from OpenSSH",
+	    "%u-bit %s, converted by %s@%.24s from OpenSSH",
 	    sshkey_size(k), sshkey_type(k),
 	    pw->pw_name, hostname);
 
@@ -1220,7 +1220,7 @@ do_gen_all_hostkeys(struct passwd *pw)
 		}
 		if ((r = sshkey_from_private(private, &public)) != 0)
 			fatal_fr(r, "sshkey_from_private");
-		snprintf(comment, sizeof comment, "%s@%s", pw->pw_name,
+		snprintf(comment, sizeof comment, "%s@%.1022s", pw->pw_name,
 		    hostname);
 		if ((r = sshkey_save_private(private, prv_tmp, "",
 		    comment, private_key_format, openssh_format_cipher,
@@ -4121,7 +4121,7 @@ main(int argc, char **argv)
 		strlcpy(comment, identity_comment, sizeof(comment));
 	} else {
 		/* Create default comment field for the passphrase. */
-		snprintf(comment, sizeof comment, "%s@%s", pw->pw_name, hostname);
+		snprintf(comment, sizeof comment, "%s@%.1022s", pw->pw_name, hostname);
 	}
 
 	/* Save the key with the given passphrase and comment. */
