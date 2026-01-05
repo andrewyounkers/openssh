@@ -698,7 +698,7 @@ fail:
 }
 
 #define TF_BUFS	8
-#define TF_LEN	32
+#define TF_LEN	9
 
 const char *
 fmt_timeframe(time_t t)
