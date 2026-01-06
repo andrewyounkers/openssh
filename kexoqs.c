@@ -42,7 +42,7 @@ static int kex_kem_generic_keypair(OQS_KEM *kem, struct kex *kex)
 {
   struct sshbuf *buf = NULL;
   u_char *cp = NULL;
-  int r;
+  int r = SSH_ERR_INTERNAL_ERROR;
   if ((buf = sshbuf_new()) == NULL) {
     return SSH_ERR_ALLOC_FAIL;
   }
@@ -71,7 +71,7 @@ static int kex_kem_generic_enc(OQS_KEM *kem, struct kex *kex,
   struct sshbuf *buf = NULL;
   const u_char *client_pub;
   u_char *kem_key = NULL, *ciphertext;
-  int r;
+  int r = SSH_ERR_INTERNAL_ERROR;
   *server_blobp = NULL;
   *shared_secretp = NULL;
   if (sshbuf_len(client_blob) != kem->length_public_key) {
@@ -125,7 +125,7 @@ static int kex_kem_generic_dec(OQS_KEM *kem,
   struct sshbuf *buf = NULL;
   u_char *kem_key = NULL;
   const u_char *ciphertext;
-  int r;
+  int r = SSH_ERR_INTERNAL_ERROR;
   *shared_secretp = NULL;
   if (sshbuf_len(server_blob) != kem->length_ciphertext) {
     r = SSH_ERR_SIGNATURE_INVALID;

@@ -82,7 +82,7 @@ static int kex_kem_generic_with_x25519_enc(OQS_KEM *kem, struct kex *kex,
   u_char server_key[CURVE25519_SIZE];
   u_char hash[SSH_DIGEST_MAX_LENGTH];
   size_t needed = 0;
-  int r;
+  int r = SSH_ERR_INTERNAL_ERROR;
 
   *server_blobp = NULL;
   *shared_secretp = NULL;
@@ -116,6 +116,7 @@ static int kex_kem_generic_with_x25519_enc(OQS_KEM *kem, struct kex *kex,
   /* generate and encrypt KEM key with client key */
   if (OQS_KEM_encaps(kem, public_key, private_key, client_pub)
       != OQS_SUCCESS) {
+    r = SSH_ERR_LIBCRYPTO_ERROR;
     goto out;
   }
   client_pub += kem->length_public_key;
@@ -162,7 +163,7 @@ static int kex_kem_generic_with_x25519_dec(OQS_KEM *kem, struct kex *kex,
   size_t needed = 0;
   /* x25519 values */
   u_char hash[SSH_DIGEST_MAX_LENGTH];
-  int r;
+  int r = SSH_ERR_INTERNAL_ERROR;
 
   *shared_secretp = NULL;
 
@@ -183,6 +184,7 @@ static int kex_kem_generic_with_x25519_dec(OQS_KEM *kem, struct kex *kex,
   /* decapsulate the post-quantum secret */
   if (OQS_KEM_decaps(kem, private_key, public_key,
                      kex->oqs_client_key) != OQS_SUCCESS) {
+    r = SSH_ERR_LIBCRYPTO_ERROR;
     goto out;
   }
   public_key += kem->length_ciphertext;
