@@ -34,8 +34,8 @@ for fmt in '' RFC4716 PKCS8 PEM; do
 ##### OQS_TEMPLATE_FRAGMENT_EXCLUDE_OQS_ALGS_START
 		*falcon512*) test -z "$oldfmt" || continue ;;
 		*falcon1024*) test -z "$oldfmt" || continue ;;
-		*sphincssha2128fsimple*) test -z "$oldfmt" || continue ;;
-		*sphincssha2256fsimple*) test -z "$oldfmt" || continue ;;
+		*slhdsapuresha2128f*) test -z "$oldfmt" || continue ;;
+		*slhdsapuresha2256f*) test -z "$oldfmt" || continue ;;
 		*mldsa-44*) test -z "$oldfmt" || continue ;;
 		*mldsa-65*) test -z "$oldfmt" || continue ;;
 		*mldsa-87*) test -z "$oldfmt" || continue ;;

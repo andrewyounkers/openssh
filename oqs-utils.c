@@ -5,7 +5,7 @@ int oqs_utils_is_rsa_hybrid(int keytype) {
 ///// OQS_TEMPLATE_FRAGMENT_LIST_RSA_HYBRIDS_START
         case KEY_RSA3072_FALCON_512:
             return 1;
-        case KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
+        case KEY_RSA3072_SLH_DSA_PURE_SHA2_128F:
             return 1;
         case KEY_RSA3072_ML_DSA_44:
             return 1;
@@ -23,9 +23,9 @@ int oqs_utils_is_ecdsa_hybrid(int keytype) {
             return 1;
         case KEY_ECDSA_NISTP521_FALCON_1024:
             return 1;
-        case KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:
+        case KEY_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F:
             return 1;
-        case KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:
+        case KEY_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F:
             return 1;
         case KEY_ECDSA_NISTP256_ML_DSA_44:
             return 1;

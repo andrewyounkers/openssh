@@ -54,11 +54,11 @@ static size_t oqs_sig_pk_len(int type)
     case KEY_ECDSA_NISTP256_FALCON_512:return OQS_SIG_falcon_512_length_public_key;
     case KEY_FALCON_1024:
     case KEY_ECDSA_NISTP521_FALCON_1024:return OQS_SIG_falcon_1024_length_public_key;
-    case KEY_SPHINCS_SHA2_128F_SIMPLE:
-    case KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
-    case KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:return OQS_SIG_sphincs_sha2_128f_simple_length_public_key;
-    case KEY_SPHINCS_SHA2_256F_SIMPLE:
-    case KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:return OQS_SIG_sphincs_sha2_256f_simple_length_public_key;
+    case KEY_SLH_DSA_PURE_SHA2_128F:
+    case KEY_RSA3072_SLH_DSA_PURE_SHA2_128F:
+    case KEY_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F:return OQS_SIG_slh_dsa_pure_sha2_128f_length_public_key;
+    case KEY_SLH_DSA_PURE_SHA2_256F:
+    case KEY_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F:return OQS_SIG_slh_dsa_pure_sha2_256f_length_public_key;
     case KEY_ML_DSA_44:
     case KEY_RSA3072_ML_DSA_44:
     case KEY_ECDSA_NISTP256_ML_DSA_44:return OQS_SIG_ml_dsa_44_length_public_key;
@@ -90,13 +90,13 @@ static size_t oqs_sig_sk_len(int type)
     case KEY_FALCON_1024:
     case KEY_ECDSA_NISTP521_FALCON_1024:
       return OQS_SIG_falcon_1024_length_secret_key;
-    case KEY_SPHINCS_SHA2_128F_SIMPLE:
-    case KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
-    case KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:
-      return OQS_SIG_sphincs_sha2_128f_simple_length_secret_key;
-    case KEY_SPHINCS_SHA2_256F_SIMPLE:
-    case KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:
-      return OQS_SIG_sphincs_sha2_256f_simple_length_secret_key;
+    case KEY_SLH_DSA_PURE_SHA2_128F:
+    case KEY_RSA3072_SLH_DSA_PURE_SHA2_128F:
+    case KEY_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F:
+      return OQS_SIG_slh_dsa_pure_sha2_128f_length_secret_key;
+    case KEY_SLH_DSA_PURE_SHA2_256F:
+    case KEY_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F:
+      return OQS_SIG_slh_dsa_pure_sha2_256f_length_secret_key;
     case KEY_ML_DSA_44:
     case KEY_RSA3072_ML_DSA_44:
     case KEY_ECDSA_NISTP256_ML_DSA_44:
@@ -720,10 +720,10 @@ const struct sshkey_impl sshkey_falcon1024_impl = {
   /* .funcs = */ &sshkey_falcon1024_funcs,
 };
 /*---------------------------------------------------
- * SPHINCS_SHA2_128F_SIMPLE METHODS
+ * SLH_DSA_PURE_SHA2_128F METHODS
  *---------------------------------------------------
  */
-static int ssh_sphincssha2128fsimple_generate(struct sshkey *k, int bits)
+static int ssh_slhdsapuresha2128f_generate(struct sshkey *k, int bits)
 {
   k->oqs_pk_len = oqs_sig_pk_len(k->type);
   k->oqs_sk_len = oqs_sig_sk_len(k->type);
@@ -731,10 +731,10 @@ static int ssh_sphincssha2128fsimple_generate(struct sshkey *k, int bits)
       (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
     return SSH_ERR_ALLOC_FAIL;
   }
-  return OQS_SIG_sphincs_sha2_128f_simple_keypair(k->oqs_pk, k->oqs_sk);
+  return OQS_SIG_slh_dsa_pure_sha2_128f_keypair(k->oqs_pk, k->oqs_sk);
 }
 
-int ssh_sphincssha2128fsimple_sign(struct sshkey *key,
+int ssh_slhdsapuresha2128f_sign(struct sshkey *key,
                      u_char **sigp,
                      size_t *lenp,
                      const u_char *data,
@@ -744,16 +744,16 @@ int ssh_sphincssha2128fsimple_sign(struct sshkey *key,
                      const char *sk_pin,
                      u_int compat)
 {
-    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_sphincs_sha2_128f_simple);
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_slh_dsa_pure_sha2_128f);
     if (sig == NULL) {
         return SSH_ERR_ALLOC_FAIL;
     }
-    int r = oqs_sign(sig, "sphincssha2128fsimple", key, sigp, lenp, data, datalen, compat);
+    int r = oqs_sign(sig, "slhdsapuresha2128f", key, sigp, lenp, data, datalen, compat);
     OQS_SIG_free(sig);
     return r;
 }
 
-int ssh_sphincssha2128fsimple_verify(const struct sshkey *key,
+int ssh_slhdsapuresha2128f_verify(const struct sshkey *key,
                        const u_char *signature,
                        size_t signaturelen,
                        const u_char *data,
@@ -762,16 +762,16 @@ int ssh_sphincssha2128fsimple_verify(const struct sshkey *key,
                        u_int compat,
                        struct sshkey_sig_details **detailsp)
 {
-    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_sphincs_sha2_128f_simple);
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_slh_dsa_pure_sha2_128f);
     if (sig == NULL) {
         return SSH_ERR_ALLOC_FAIL;
     }
-    int r = oqs_verify(sig, "sphincssha2128fsimple", key, signature, signaturelen, data, datalen, compat);
+    int r = oqs_verify(sig, "slhdsapuresha2128f", key, signature, signaturelen, data, datalen, compat);
     OQS_SIG_free(sig);
     return r;
 }
 
-static const struct sshkey_impl_funcs sshkey_sphincssha2128fsimple_funcs = {
+static const struct sshkey_impl_funcs sshkey_slhdsapuresha2128f_funcs = {
   /* .size = */ ssh_generic_size,
   /* .alloc = */ ssh_generic_alloc,
   /* .cleanup = */ ssh_generic_cleanup,
@@ -780,28 +780,28 @@ static const struct sshkey_impl_funcs sshkey_sphincssha2128fsimple_funcs = {
   /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
   /* .ssh_serialize_private = */ ssh_generic_serialize_private,
   /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
-  /* .generate = */ ssh_sphincssha2128fsimple_generate,
+  /* .generate = */ ssh_slhdsapuresha2128f_generate,
   /* .copy_public = */ ssh_generic_copy_public,
-  /* .sign = */ ssh_sphincssha2128fsimple_sign,
-  /* .verify = */ ssh_sphincssha2128fsimple_verify,
+  /* .sign = */ ssh_slhdsapuresha2128f_sign,
+  /* .verify = */ ssh_slhdsapuresha2128f_verify,
 };
 
-const struct sshkey_impl sshkey_sphincssha2128fsimple_impl = {
-  /* .name = */ "ssh-sphincssha2128fsimple",
-  /* .shortname = */ "SPHINCSSHA2128FSIMPLE",
+const struct sshkey_impl sshkey_slhdsapuresha2128f_impl = {
+  /* .name = */ "ssh-slhdsapuresha2128f",
+  /* .shortname = */ "SLHDSAPURESHA2128F",
   /* .sigalg = */ NULL,
-  /* .type = */ KEY_SPHINCS_SHA2_128F_SIMPLE,
+  /* .type = */ KEY_SLH_DSA_PURE_SHA2_128F,
   /* .nid = */ 0,
   /* .cert = */ 0,
   /* .sigonly = */ 0,
   /* .keybits = */ 0,
-  /* .funcs = */ &sshkey_sphincssha2128fsimple_funcs,
+  /* .funcs = */ &sshkey_slhdsapuresha2128f_funcs,
 };
 /*---------------------------------------------------
- * SPHINCS_SHA2_256F_SIMPLE METHODS
+ * SLH_DSA_PURE_SHA2_256F METHODS
  *---------------------------------------------------
  */
-static int ssh_sphincssha2256fsimple_generate(struct sshkey *k, int bits)
+static int ssh_slhdsapuresha2256f_generate(struct sshkey *k, int bits)
 {
   k->oqs_pk_len = oqs_sig_pk_len(k->type);
   k->oqs_sk_len = oqs_sig_sk_len(k->type);
@@ -809,10 +809,10 @@ static int ssh_sphincssha2256fsimple_generate(struct sshkey *k, int bits)
       (k->oqs_sk = malloc(k->oqs_sk_len)) == NULL) {
     return SSH_ERR_ALLOC_FAIL;
   }
-  return OQS_SIG_sphincs_sha2_256f_simple_keypair(k->oqs_pk, k->oqs_sk);
+  return OQS_SIG_slh_dsa_pure_sha2_256f_keypair(k->oqs_pk, k->oqs_sk);
 }
 
-int ssh_sphincssha2256fsimple_sign(struct sshkey *key,
+int ssh_slhdsapuresha2256f_sign(struct sshkey *key,
                      u_char **sigp,
                      size_t *lenp,
                      const u_char *data,
@@ -822,16 +822,16 @@ int ssh_sphincssha2256fsimple_sign(struct sshkey *key,
                      const char *sk_pin,
                      u_int compat)
 {
-    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_sphincs_sha2_256f_simple);
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_slh_dsa_pure_sha2_256f);
     if (sig == NULL) {
         return SSH_ERR_ALLOC_FAIL;
     }
-    int r = oqs_sign(sig, "sphincssha2256fsimple", key, sigp, lenp, data, datalen, compat);
+    int r = oqs_sign(sig, "slhdsapuresha2256f", key, sigp, lenp, data, datalen, compat);
     OQS_SIG_free(sig);
     return r;
 }
 
-int ssh_sphincssha2256fsimple_verify(const struct sshkey *key,
+int ssh_slhdsapuresha2256f_verify(const struct sshkey *key,
                        const u_char *signature,
                        size_t signaturelen,
                        const u_char *data,
@@ -840,16 +840,16 @@ int ssh_sphincssha2256fsimple_verify(const struct sshkey *key,
                        u_int compat,
                        struct sshkey_sig_details **detailsp)
 {
-    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_sphincs_sha2_256f_simple);
+    OQS_SIG *sig = OQS_SIG_new(OQS_SIG_alg_slh_dsa_pure_sha2_256f);
     if (sig == NULL) {
         return SSH_ERR_ALLOC_FAIL;
     }
-    int r = oqs_verify(sig, "sphincssha2256fsimple", key, signature, signaturelen, data, datalen, compat);
+    int r = oqs_verify(sig, "slhdsapuresha2256f", key, signature, signaturelen, data, datalen, compat);
     OQS_SIG_free(sig);
     return r;
 }
 
-static const struct sshkey_impl_funcs sshkey_sphincssha2256fsimple_funcs = {
+static const struct sshkey_impl_funcs sshkey_slhdsapuresha2256f_funcs = {
   /* .size = */ ssh_generic_size,
   /* .alloc = */ ssh_generic_alloc,
   /* .cleanup = */ ssh_generic_cleanup,
@@ -858,22 +858,22 @@ static const struct sshkey_impl_funcs sshkey_sphincssha2256fsimple_funcs = {
   /* .ssh_deserialize_public = */ ssh_generic_deserialize_public,
   /* .ssh_serialize_private = */ ssh_generic_serialize_private,
   /* .ssh_deserialize_private = */ ssh_generic_deserialize_private,
-  /* .generate = */ ssh_sphincssha2256fsimple_generate,
+  /* .generate = */ ssh_slhdsapuresha2256f_generate,
   /* .copy_public = */ ssh_generic_copy_public,
-  /* .sign = */ ssh_sphincssha2256fsimple_sign,
-  /* .verify = */ ssh_sphincssha2256fsimple_verify,
+  /* .sign = */ ssh_slhdsapuresha2256f_sign,
+  /* .verify = */ ssh_slhdsapuresha2256f_verify,
 };
 
-const struct sshkey_impl sshkey_sphincssha2256fsimple_impl = {
-  /* .name = */ "ssh-sphincssha2256fsimple",
-  /* .shortname = */ "SPHINCSSHA2256FSIMPLE",
+const struct sshkey_impl sshkey_slhdsapuresha2256f_impl = {
+  /* .name = */ "ssh-slhdsapuresha2256f",
+  /* .shortname = */ "SLHDSAPURESHA2256F",
   /* .sigalg = */ NULL,
-  /* .type = */ KEY_SPHINCS_SHA2_256F_SIMPLE,
+  /* .type = */ KEY_SLH_DSA_PURE_SHA2_256F,
   /* .nid = */ 0,
   /* .cert = */ 0,
   /* .sigonly = */ 0,
   /* .keybits = */ 0,
-  /* .funcs = */ &sshkey_sphincssha2256fsimple_funcs,
+  /* .funcs = */ &sshkey_slhdsapuresha2256f_funcs,
 };
 /*---------------------------------------------------
  * ML_DSA_44 METHODS
@@ -1371,7 +1371,7 @@ const struct sshkey_impl sshkey_rsa3072_falcon512_impl = {
   /* .keybits = */ 0,
   /* .funcs = */ &sshkey_rsa3072_falcon512_funcs,
 };
-static const struct sshkey_impl_funcs sshkey_rsa3072_sphincssha2128fsimple_funcs = {
+static const struct sshkey_impl_funcs sshkey_rsa3072_slhdsapuresha2128f_funcs = {
   /* .size = */ ssh_generic_size,
   /* .alloc = */ ssh_generic_alloc,
   /* .cleanup = */ ssh_generic_cleanup,
@@ -1386,16 +1386,16 @@ static const struct sshkey_impl_funcs sshkey_rsa3072_sphincssha2128fsimple_funcs
   /* .verify = */ ssh_generic_verify,
 };
 
-const struct sshkey_impl sshkey_rsa3072_sphincssha2128fsimple_impl = {
-  /* .name = */ "ssh-rsa3072-sphincssha2128fsimple",
-  /* .shortname = */ "RSA3072_SPHINCSSHA2128FSIMPLE",
+const struct sshkey_impl sshkey_rsa3072_slhdsapuresha2128f_impl = {
+  /* .name = */ "ssh-rsa3072-slhdsapuresha2128f",
+  /* .shortname = */ "RSA3072_SLHDSAPURESHA2128F",
   /* .sigalg = */ NULL,
-  /* .type = */ KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE,
+  /* .type = */ KEY_RSA3072_SLH_DSA_PURE_SHA2_128F,
   /* .nid = */ 0,
   /* .cert = */ 0,
   /* .sigonly = */ 0,
   /* .keybits = */ 0,
-  /* .funcs = */ &sshkey_rsa3072_sphincssha2128fsimple_funcs,
+  /* .funcs = */ &sshkey_rsa3072_slhdsapuresha2128f_funcs,
 };
 static const struct sshkey_impl_funcs sshkey_rsa3072_mldsa44_funcs = {
   /* .size = */ ssh_generic_size,
@@ -1502,7 +1502,7 @@ const struct sshkey_impl sshkey_ecdsanistp521_falcon1024_impl = {
   /* .keybits = */ 0,
   /* .funcs = */ &sshkey_ecdsanistp521_falcon1024_funcs,
 };
-static const struct sshkey_impl_funcs sshkey_ecdsanistp256_sphincssha2128fsimple_funcs = {
+static const struct sshkey_impl_funcs sshkey_ecdsanistp256_slhdsapuresha2128f_funcs = {
   /* .size = */ ssh_generic_size,
   /* .alloc = */ ssh_generic_alloc,
   /* .cleanup = */ ssh_generic_cleanup,
@@ -1517,18 +1517,18 @@ static const struct sshkey_impl_funcs sshkey_ecdsanistp256_sphincssha2128fsimple
   /* .verify = */ ssh_generic_verify,
 };
 
-const struct sshkey_impl sshkey_ecdsanistp256_sphincssha2128fsimple_impl = {
-  /* .name = */ "ssh-ecdsa-nistp256-sphincssha2128fsimple",
-  /* .shortname = */ "ECDSA_NISTP256_SPHINCSSHA2128FSIMPLE",
+const struct sshkey_impl sshkey_ecdsanistp256_slhdsapuresha2128f_impl = {
+  /* .name = */ "ssh-ecdsa-nistp256-slhdsapuresha2128f",
+  /* .shortname = */ "ECDSA_NISTP256_SLHDSAPURESHA2128F",
   /* .sigalg = */ NULL,
-  /* .type = */ KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE,
+  /* .type = */ KEY_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F,
   /* .nid = */ NID_X9_62_prime256v1,
   /* .cert = */ 0,
   /* .sigonly = */ 0,
   /* .keybits = */ 0,
-  /* .funcs = */ &sshkey_ecdsanistp256_sphincssha2128fsimple_funcs,
+  /* .funcs = */ &sshkey_ecdsanistp256_slhdsapuresha2128f_funcs,
 };
-static const struct sshkey_impl_funcs sshkey_ecdsanistp521_sphincssha2256fsimple_funcs = {
+static const struct sshkey_impl_funcs sshkey_ecdsanistp521_slhdsapuresha2256f_funcs = {
   /* .size = */ ssh_generic_size,
   /* .alloc = */ ssh_generic_alloc,
   /* .cleanup = */ ssh_generic_cleanup,
@@ -1543,16 +1543,16 @@ static const struct sshkey_impl_funcs sshkey_ecdsanistp521_sphincssha2256fsimple
   /* .verify = */ ssh_generic_verify,
 };
 
-const struct sshkey_impl sshkey_ecdsanistp521_sphincssha2256fsimple_impl = {
-  /* .name = */ "ssh-ecdsa-nistp521-sphincssha2256fsimple",
-  /* .shortname = */ "ECDSA_NISTP521_SPHINCSSHA2256FSIMPLE",
+const struct sshkey_impl sshkey_ecdsanistp521_slhdsapuresha2256f_impl = {
+  /* .name = */ "ssh-ecdsa-nistp521-slhdsapuresha2256f",
+  /* .shortname = */ "ECDSA_NISTP521_SLHDSAPURESHA2256F",
   /* .sigalg = */ NULL,
-  /* .type = */ KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE,
+  /* .type = */ KEY_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F,
   /* .nid = */ NID_secp521r1,
   /* .cert = */ 0,
   /* .sigonly = */ 0,
   /* .keybits = */ 0,
-  /* .funcs = */ &sshkey_ecdsanistp521_sphincssha2256fsimple_funcs,
+  /* .funcs = */ &sshkey_ecdsanistp521_slhdsapuresha2256f_funcs,
 };
 static const struct sshkey_impl_funcs sshkey_ecdsanistp256_mldsa44_funcs = {
   /* .size = */ ssh_generic_size,
@@ -1749,14 +1749,14 @@ const struct sshkey_impl *oqs_pq_sshkey_impl(const struct sshkey *k)
     case KEY_ECDSA_NISTP521_FALCON_1024:
       impl = &sshkey_falcon1024_impl;
       break;
-    case KEY_SPHINCS_SHA2_128F_SIMPLE:
-    case KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
-    case KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:
-      impl = &sshkey_sphincssha2128fsimple_impl;
+    case KEY_SLH_DSA_PURE_SHA2_128F:
+    case KEY_RSA3072_SLH_DSA_PURE_SHA2_128F:
+    case KEY_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F:
+      impl = &sshkey_slhdsapuresha2128f_impl;
       break;
-    case KEY_SPHINCS_SHA2_256F_SIMPLE:
-    case KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:
-      impl = &sshkey_sphincssha2256fsimple_impl;
+    case KEY_SLH_DSA_PURE_SHA2_256F:
+    case KEY_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F:
+      impl = &sshkey_slhdsapuresha2256f_impl;
       break;
     case KEY_ML_DSA_44:
     case KEY_RSA3072_ML_DSA_44:

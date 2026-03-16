@@ -70,11 +70,11 @@ int ssh_port = SSH_DEFAULT_PORT;
 #define KT_ECDSA_NISTP256_FALCON_512 ((uint64_t)1<<9)
 #define KT_FALCON_1024 ((uint64_t)1<<10)
 #define KT_ECDSA_NISTP521_FALCON_1024 ((uint64_t)1<<11)
-#define KT_SPHINCS_SHA2_128F_SIMPLE ((uint64_t)1<<12)
-#define KT_RSA3072_SPHINCS_SHA2_128F_SIMPLE ((uint64_t)1<<13)
-#define KT_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE ((uint64_t)1<<14)
-#define KT_SPHINCS_SHA2_256F_SIMPLE ((uint64_t)1<<15)
-#define KT_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE ((uint64_t)1<<16)
+#define KT_SLH_DSA_PURE_SHA2_128F ((uint64_t)1<<12)
+#define KT_RSA3072_SLH_DSA_PURE_SHA2_128F ((uint64_t)1<<13)
+#define KT_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F ((uint64_t)1<<14)
+#define KT_SLH_DSA_PURE_SHA2_256F ((uint64_t)1<<15)
+#define KT_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F ((uint64_t)1<<16)
 #define KT_ML_DSA_44 ((uint64_t)1<<17)
 #define KT_RSA3072_ML_DSA_44 ((uint64_t)1<<18)
 #define KT_ECDSA_NISTP256_ML_DSA_44 ((uint64_t)1<<19)
@@ -101,11 +101,11 @@ uint64_t get_keytypes = KT_RSA|KT_ECDSA|KT_ED25519|KT_ECDSA_SK|KT_ED25519_SK|\
                         KT_ECDSA_NISTP256_FALCON_512 | \
                         KT_FALCON_1024 | \
                         KT_ECDSA_NISTP521_FALCON_1024 | \
-                        KT_SPHINCS_SHA2_128F_SIMPLE | \
-                        KT_RSA3072_SPHINCS_SHA2_128F_SIMPLE | \
-                        KT_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE | \
-                        KT_SPHINCS_SHA2_256F_SIMPLE | \
-                        KT_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE | \
+                        KT_SLH_DSA_PURE_SHA2_128F | \
+                        KT_RSA3072_SLH_DSA_PURE_SHA2_128F | \
+                        KT_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F | \
+                        KT_SLH_DSA_PURE_SHA2_256F | \
+                        KT_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F | \
                         KT_ML_DSA_44 | \
                         KT_RSA3072_ML_DSA_44 | \
                         KT_ECDSA_NISTP256_ML_DSA_44 | \
@@ -325,11 +325,11 @@ keygrab_ssh2(con *c)
 	case KT_FALCON_1024:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-falcon1024";
 	  break;
-	case KT_SPHINCS_SHA2_128F_SIMPLE:
-	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-sphincssha2128fsimple";
+	case KT_SLH_DSA_PURE_SHA2_128F:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-slhdsapuresha2128f";
 	  break;
-	case KT_SPHINCS_SHA2_256F_SIMPLE:
-	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-sphincssha2256fsimple";
+	case KT_SLH_DSA_PURE_SHA2_256F:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-slhdsapuresha2256f";
 	  break;
 	case KT_ML_DSA_44:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-mldsa-44";
@@ -353,8 +353,8 @@ keygrab_ssh2(con *c)
 	case KT_RSA3072_FALCON_512:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-rsa3072-falcon512";
 	  break;
-	case KT_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
-	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-rsa3072-sphincssha2128fsimple";
+	case KT_RSA3072_SLH_DSA_PURE_SHA2_128F:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-rsa3072-slhdsapuresha2128f";
 	  break;
 	case KT_RSA3072_ML_DSA_44:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-rsa3072-mldsa-44";
@@ -369,11 +369,11 @@ keygrab_ssh2(con *c)
 	case KT_ECDSA_NISTP521_FALCON_1024:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-falcon1024";
 	  break;
-	case KT_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:
-	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp256-sphincssha2128fsimple";
+	case KT_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp256-slhdsapuresha2128f";
 	  break;
-	case KT_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:
-	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-sphincssha2256fsimple";
+	case KT_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F:
+	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp521-slhdsapuresha2256f";
 	  break;
 	case KT_ECDSA_NISTP256_ML_DSA_44:
 	  myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] = "ssh-ecdsa-nistp256-mldsa-44";
@@ -954,20 +954,20 @@ main(int argc, char **argv)
 				case KEY_ECDSA_NISTP521_FALCON_1024:
 					get_keytypes |= KT_ECDSA_NISTP521_FALCON_1024;
 					break;
-				case KEY_SPHINCS_SHA2_128F_SIMPLE:
-					get_keytypes |= KT_SPHINCS_SHA2_128F_SIMPLE;
+				case KEY_SLH_DSA_PURE_SHA2_128F:
+					get_keytypes |= KT_SLH_DSA_PURE_SHA2_128F;
 					break;
-				case KEY_RSA3072_SPHINCS_SHA2_128F_SIMPLE:
-					get_keytypes |= KT_RSA3072_SPHINCS_SHA2_128F_SIMPLE;
+				case KEY_RSA3072_SLH_DSA_PURE_SHA2_128F:
+					get_keytypes |= KT_RSA3072_SLH_DSA_PURE_SHA2_128F;
 					break;
-				case KEY_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE:
-					get_keytypes |= KT_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE;
+				case KEY_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F:
+					get_keytypes |= KT_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F;
 					break;
-				case KEY_SPHINCS_SHA2_256F_SIMPLE:
-					get_keytypes |= KT_SPHINCS_SHA2_256F_SIMPLE;
+				case KEY_SLH_DSA_PURE_SHA2_256F:
+					get_keytypes |= KT_SLH_DSA_PURE_SHA2_256F;
 					break;
-				case KEY_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE:
-					get_keytypes |= KT_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE;
+				case KEY_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F:
+					get_keytypes |= KT_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F;
 					break;
 				case KEY_ML_DSA_44:
 					get_keytypes |= KT_ML_DSA_44;

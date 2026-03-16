@@ -183,6 +183,8 @@ static int kex_kem_generic_with_ec_enc(OQS_KEM *kem,
   struct sshbuf *ecdh_client_blob = NULL;
   struct sshbuf *ecdh_server_blob = NULL;
   struct sshbuf *ecdh_shared_secret;
+  size_t client_blob_len = 0;
+  size_t ecdh_part_len = 0;
   u_char hash[SSH_DIGEST_MAX_LENGTH];
   int r = SSH_ERR_INTERNAL_ERROR;
   *server_blobp = NULL;
@@ -196,6 +198,12 @@ static int kex_kem_generic_with_ec_enc(OQS_KEM *kem,
      r = SSH_ERR_SIGNATURE_INVALID;
      goto out;
      }*/
+
+  client_blob_len = sshbuf_len(client_blob);
+  if (client_blob_len < kem->length_public_key) {
+    r = SSH_ERR_SIGNATURE_INVALID;
+    goto out;
+  }
 
   /* get a pointer to the client PQC public key */
   client_pub = sshbuf_ptr(client_blob);
@@ -230,7 +238,17 @@ static int kex_kem_generic_with_ec_enc(OQS_KEM *kem,
     goto out;
   }
 
-  ecdh_client_blob = sshbuf_from(client_pub + kem->length_public_key, sshbuf_len(client_blob) - kem->length_public_key);
+  ecdh_part_len = client_blob_len - kem->length_public_key;
+  if (ecdh_part_len == 0) {
+    r = SSH_ERR_SIGNATURE_INVALID;
+    goto out;
+  }
+  ecdh_client_blob = sshbuf_from(client_pub + kem->length_public_key,
+      ecdh_part_len);
+  if (ecdh_client_blob == NULL) {
+    r = SSH_ERR_ALLOC_FAIL;
+    goto out;
+  }
   /* generate ecdh key pair, store server ecdh public key after KEM ciphertext
      as done in kex_ecdh_enc(...) */
   if ((ecdh_server_key = EC_KEY_new_by_curve_name(kex->ec_nid)) == NULL) {
@@ -295,6 +313,8 @@ static int kex_kem_generic_with_ec_dec(OQS_KEM *kem,
   struct sshbuf *ecdh_shared_secret;
   struct sshbuf *ecdh_server_blob = NULL;
   u_char hash[SSH_DIGEST_MAX_LENGTH];
+  size_t server_blob_len = 0;
+  size_t ecdh_part_len = 0;
   int r = SSH_ERR_INTERNAL_ERROR;
   *shared_secretp = NULL;
 
@@ -306,6 +326,12 @@ static int kex_kem_generic_with_ec_dec(OQS_KEM *kem,
      r = SSH_ERR_SIGNATURE_INVALID;
      goto out;
      } */
+
+    server_blob_len = sshbuf_len(server_blob);
+    if (server_blob_len < kem->length_ciphertext) {
+      r = SSH_ERR_SIGNATURE_INVALID;
+      goto out;
+    }
 
     /* get a pointer to the server PQC ciphertext */
     ciphertext = sshbuf_ptr(server_blob);
@@ -326,7 +352,17 @@ static int kex_kem_generic_with_ec_dec(OQS_KEM *kem,
 
     /* derive the ecdh shared key, using 2nd part of server_blob
        as done in kex_ecdh_dec(...) */
-    ecdh_server_blob = sshbuf_from(ciphertext + kem->length_ciphertext, sshbuf_len(server_blob) - kem->length_ciphertext);
+    ecdh_part_len = server_blob_len - kem->length_ciphertext;
+    if (ecdh_part_len == 0) {
+      r = SSH_ERR_SIGNATURE_INVALID;
+      goto out;
+    }
+    ecdh_server_blob = sshbuf_from(ciphertext + kem->length_ciphertext,
+        ecdh_part_len);
+    if (ecdh_server_blob == NULL) {
+      r = SSH_ERR_ALLOC_FAIL;
+      goto out;
+    }
 
     if ((r = kex_ecdh_dec_key_group(kex, ecdh_server_blob, kex->ec_client_key,
                                     kex->ec_group, &ecdh_shared_secret)) != 0)

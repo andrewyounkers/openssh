@@ -318,9 +318,9 @@ fill_default_server_options(ServerOptions *options)
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_FALCON_1024_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
-		    _PATH_HOST_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, 0);
+		    _PATH_HOST_SLH_DSA_PURE_SHA2_128F_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
-		    _PATH_HOST_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE, 0);
+		    _PATH_HOST_SLH_DSA_PURE_SHA2_256F_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_ML_DSA_44_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
@@ -337,7 +337,7 @@ fill_default_server_options(ServerOptions *options)
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_RSA3072_FALCON_512_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
-		    _PATH_HOST_RSA3072_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, 0);
+		    _PATH_HOST_RSA3072_SLH_DSA_PURE_SHA2_128F_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_RSA3072_ML_DSA_44_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
@@ -348,9 +348,9 @@ fill_default_server_options(ServerOptions *options)
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_ECDSA_NISTP521_FALCON_1024_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
-		    _PATH_HOST_ECDSA_NISTP256_SPHINCS_SHA2_128F_SIMPLE_KEY_FILE, 0);
+		    _PATH_HOST_ECDSA_NISTP256_SLH_DSA_PURE_SHA2_128F_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
-		    _PATH_HOST_ECDSA_NISTP521_SPHINCS_SHA2_256F_SIMPLE_KEY_FILE, 0);
+		    _PATH_HOST_ECDSA_NISTP521_SLH_DSA_PURE_SHA2_256F_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
 		    _PATH_HOST_ECDSA_NISTP256_ML_DSA_44_KEY_FILE, 0);
 		servconf_add_hostkey("[default]", 0, options,
