@@ -37,6 +37,7 @@
 #define _PATH_SERVER_CONFIG_FILE	SSHDIR "/sshd_config"
 #define _PATH_HOST_CONFIG_FILE		SSHDIR "/ssh_config"
 #define _PATH_HOST_ECDSA_KEY_FILE	SSHDIR "/ssh_host_ecdsa_key"
+#define _PATH_HOST_RSA_KEY_FILE		SSHDIR "/ssh_host_rsa_key"
 #define _PATH_HOST_ED25519_KEY_FILE	SSHDIR "/ssh_host_ed25519_key"
 #define _PATH_HOST_RSA_KEY_FILE		SSHDIR "/ssh_host_rsa_key"
 ///// OQS_TEMPLATE_FRAGMENT_ADD_KEY_FILE_PATHS_START
@@ -221,6 +222,9 @@
 #ifndef _PATH_SFTP_SERVER
 #define _PATH_SFTP_SERVER		"/usr/libexec/sftp-server"
 #endif
+#ifndef _PATH_LS
+#define _PATH_LS			"ls"
+#endif
 
 /* chroot directory for unprivileged user when UsePrivilegeSeparation=yes */
 #ifndef _PATH_PRIVSEP_CHROOT_DIR
@@ -229,11 +233,7 @@
 
 /* for passwd change */
 #ifndef _PATH_PASSWD_PROG
-#define _PATH_PASSWD_PROG             "/usr/bin/passwd"
-#endif
-
-#ifndef _PATH_LS
-#define _PATH_LS			"ls"
+#define _PATH_PASSWD_PROG		"/usr/bin/passwd"
 #endif
 
 /* Askpass program define */
