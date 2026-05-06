@@ -454,7 +454,7 @@ void
 sshlogv(const char *file, const char *func, int line, int showfunc,
     LogLevel level, const char *suffix, const char *fmt, va_list args)
 {
-	char tag[128], fmt2[MSGBUFSIZ + 128];
+	char tag[256], fmt2[MSGBUFSIZ + 256];
 	int forced = 0;
 	const char *cp;
 	size_t i;

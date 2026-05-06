@@ -745,7 +745,7 @@ convtime(const char *s)
 }
 
 #define TF_BUFS	8
-#define TF_LEN	9
+#define TF_LEN	21
 
 const char *
 fmt_timeframe(time_t t)

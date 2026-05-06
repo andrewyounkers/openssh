@@ -3730,6 +3730,7 @@ sshkey_parse_private_fileblob_type(struct sshbuf *blob, int type,
 #else
 	return SSH_ERR_INVALID_FORMAT;
 #endif /* WITH_OPENSSL */
+	}
 }
 
 int
