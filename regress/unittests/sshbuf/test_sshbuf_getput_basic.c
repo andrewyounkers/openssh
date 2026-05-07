@@ -942,6 +942,5 @@ sshbuf_getput_basic_tests(void)
 	ASSERT_SIZE_T_EQ(sshbuf_len(p1), 0);
 	free(s2);
 	sshbuf_free(p1);
-	free(s2);
 	TEST_DONE();
 }
