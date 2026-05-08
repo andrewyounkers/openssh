@@ -28,8 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: autoreconf
-      run: sh -c autoreconf
 
     - name: start DragonFlyBSD ${{ matrix.target }} VM
       uses: vmactions/dragonflybsd-vm@v1
@@ -37,7 +35,7 @@ jobs:
         release: ${{ matrix.target }}
         usesh: true
         prepare: |
-          pkg install -y sudo
+          pkg install -y sudo git cmake ninja bash python3 autoconf automake
           pw useradd builder -m
           echo "builder ALL=(ALL:ALL) NOPASSWD: ALL" >>/usr/local/etc/sudoers
           mkdir -p /var/empty /usr/local/etc
@@ -46,35 +44,22 @@ jobs:
     - name: set file perms
       shell: dragonflybsd {0}
       run: cd $GITHUB_WORKSPACE && chown -R builder .
-    - name: configure
+    - name: Clone liboqs
       shell: dragonflybsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure --with-ssl-dir=/usr/local
-    - name: make clean
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: dragonflybsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: make
-      shell: dragonflybsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make -j4
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: dragonflybsd {0}
       run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder env SUDO=sudo make tests
-
-    - name: "PAM: configure"
+        cd $GITHUB_WORKSPACE && env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh && chown -R builder oqs-test/tmp
+    - name: Run tests documented to pass
       shell: dragonflybsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure --with-ssl-dir=/usr/local --with-pam
-    - name: "PAM: make clean"
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
       shell: dragonflybsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: "PAM: make"
-      shell: dragonflybsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make -j4
-    - name: "PAM: make tests"
-      shell: dragonflybsd {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder env SUDO=sudo SSHD_CONFOPTS="UsePam yes" make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder python3 oqs-test/try_connection.py doone
 
   freebsd:
     name: "freebsd-${{ matrix.target }}"
@@ -90,8 +75,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: autoreconf
-      run: sh -c autoreconf
 
     - name: start FreeBSD ${{ matrix.target }} VM
       uses: vmactions/freebsd-vm@v1
@@ -99,7 +82,7 @@ jobs:
         release: ${{ matrix.target }}
         usesh: true
         prepare: |
-          pkg install -y sudo
+          pkg install -y sudo git cmake ninja bash python3 autoconf automake
           pw useradd builder -m
           echo "builder ALL=(ALL:ALL) NOPASSWD: ALL" >>/usr/local/etc/sudoers
           mkdir -p /var/empty /usr/local/etc
@@ -108,35 +91,21 @@ jobs:
     - name: set file perms
       shell: freebsd {0}
       run: cd $GITHUB_WORKSPACE && chown -R builder .
-    - name: configure
+    - name: Clone liboqs
       shell: freebsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure
-    - name: make clean
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: freebsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: make
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: freebsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make -j4
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
+    - name: Run tests documented to pass
       shell: freebsd {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder env SUDO=sudo make tests
-
-    - name: "PAM: configure"
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
       shell: freebsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure --with-pam --with-audit=bsm
-    - name: "PAM: make clean"
-      shell: freebsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: "PAM: make"
-      shell: freebsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make -j4
-    - name: "PAM: make tests"
-      shell: freebsd {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder env SUDO=sudo SSHD_CONFOPTS="UsePam yes" make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder python3 oqs-test/try_connection.py doone
 
 
   netbsd:
@@ -146,16 +115,13 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          - "9.0"
-          - "9.4"
+          # NetBSD 9.x package repos are no longer reliable for CI dependency installs.
           - "10.0"
           - "10.1"
         config: [default]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: autoreconf
-      run: sh -c autoreconf
 
     - name: start NetBSD ${{ matrix.target }} VM
       uses: vmactions/netbsd-vm@v1
@@ -163,7 +129,7 @@ jobs:
         release: ${{ matrix.target }}
         usesh: true
         prepare: |
-          /usr/sbin/pkg_add sudo
+          /usr/sbin/pkg_add -u sudo git cmake ninja bash python311
           /usr/sbin/useradd -m builder
           echo "builder ALL=(ALL:ALL) NOPASSWD: ALL" >>/usr/pkg/etc/sudoers
           mkdir -p /var/empty /usr/local/etc
@@ -172,35 +138,21 @@ jobs:
     - name: set file perms
       shell: netbsd {0}
       run: cd $GITHUB_WORKSPACE && /sbin/chown -R builder .
-    - name: configure
+    - name: Clone liboqs
       shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure
-    - name: make clean
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: make
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make -j4
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
+    - name: Run tests documented to pass
       shell: netbsd {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder env SUDO=sudo make tests
-
-    - name: "PAM: configure"
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
       shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure --with-pam
-    - name: "PAM: make clean"
-      shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: "PAM: make"
-      shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make -j4
-    - name: "PAM: make tests"
-      shell: netbsd {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder env SUDO=sudo SSHD_CONFOPTS="UsePam yes" make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder /usr/pkg/bin/python3 oqs-test/try_connection.py doone
 
 
   omnios:
@@ -216,8 +168,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: autoreconf
-      run: sh -c autoreconf
 
     - name: start OmniOS ${{ matrix.target }} VM
       uses: vmactions/omnios-vm@v1
@@ -227,7 +177,7 @@ jobs:
         prepare: |
           set -x
           pfexec pkg refresh
-          pfexec pkg install build-essential
+          pfexec pkg install build-essential git cmake ninja bash runtime/python-311 autoconf automake
           useradd -m builder
           sed -e "s/^root.*ALL$/root ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers >>/tmp/sudoers
           mv /tmp/sudoers /etc/sudoers
@@ -238,20 +188,21 @@ jobs:
     - name: set file perms
       shell: omnios {0}
       run: cd $GITHUB_WORKSPACE && chown -R builder .
-    - name: configure
+    - name: Clone liboqs
       shell: omnios {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure
-    - name: make clean
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: omnios {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: make
+      run: cd $GITHUB_WORKSPACE && sudo -u builder env LIBOQS_CMAKE_ARGS="-DOQS_PERMIT_UNSUPPORTED_ARCHITECTURE=ON" bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: omnios {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && sed 's/make -j2/make -j 2/g' ./oqs-scripts/build_openssh.sh | sudo -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash
+    - name: Run tests documented to pass
       shell: omnios {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder make tests
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
+      shell: omnios {0}
+      run: cd $GITHUB_WORKSPACE && sudo -u builder python3 oqs-test/try_connection.py doone
 
 
   openbsd:
@@ -261,17 +212,13 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          - "7.3"
-          - "7.5"
-          - "7.6"
+          # OpenBSD older package repos are no longer reliable for CI dependency installs.
           - "7.7"
           - "7.8"
         config: [default]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: autoreconf
-      run: sh -c autoreconf
 
     - name: start OpenBSD ${{ matrix.target }} VM
       uses: vmactions/openbsd-vm@v1
@@ -279,6 +226,7 @@ jobs:
         release: ${{ matrix.target }}
         usesh: true
         prepare: |
+          pkg_add git cmake ninja bash python%3 openssl
           useradd -m builder
           echo "permit nopass keepenv root" >/etc/doas.conf
           echo "permit nopass keepenv builder" >>/etc/doas.conf
@@ -291,32 +239,33 @@ jobs:
     - name: set file perms
       shell: openbsd {0}
       run: cd $GITHUB_WORKSPACE && chown -R builder .
-    - name: configure
+    - name: Clone liboqs
       shell: openbsd {0}
-      run: cd $GITHUB_WORKSPACE && doas -u builder ./configure
-    - name: make clean
+      run: cd $GITHUB_WORKSPACE && doas -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: openbsd {0}
-      run: cd $GITHUB_WORKSPACE && doas -u builder make clean
-    - name: make
+      run: cd $GITHUB_WORKSPACE && doas -u builder env LIBOQS_CMAKE_ARGS="-DOPENSSL_ROOT_DIR=/usr/local" bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: openbsd {0}
-      run: cd $GITHUB_WORKSPACE && doas -u builder make -j4
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && doas -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
+    - name: Run tests documented to pass
       shell: openbsd {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        doas -u builder env SUDO=doas make tests
+      run: cd $GITHUB_WORKSPACE && doas -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
+      shell: openbsd {0}
+      run: cd $GITHUB_WORKSPACE && doas -u builder python3 oqs-test/try_connection.py doone
 
 
   openbsd-current-upstream:
-    # This job is special, and tests OpenBSD -current, both the underlying
-    # plaform (the latest snapshot) and most recent upstream code (or at least
-    # the most recent code in the github mirror) instead of OpenSSH Portable.
+    # This job runs the OQS workflow against OpenBSD -current.
     name: "openbsd-current-upstream"
     if: github.repository != 'openssh/openssh-portable-selfhosted'
     strategy:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@main
+
     - name: start OpenBSD VM
       uses: vmactions/openbsd-vm@v1
       with:
@@ -325,14 +274,15 @@ jobs:
           "20022": "22"
         usesh: true
         prepare: |
-          useradd -g wobj -m builder
+          pkg_add git cmake ninja bash python%3 openssl
+          useradd -m builder
           echo "permit nopass keepenv root" >/etc/doas.conf
           echo "permit nopass keepenv builder" >>/etc/doas.conf
           ls -l /etc/doas.conf
           chown root:wheel /etc/doas.conf
           chmod 644 /etc/doas.conf
-          touch /etc/ssh/ssh_known_hosts
-          pkg_add git
+          mkdir -p /var/empty /usr/local/etc
+          cp $GITHUB_WORKSPACE/moduli /usr/local/etc/moduli
 
     - name: Fetch sysupgrade version
       run: |
@@ -365,45 +315,24 @@ jobs:
         key: openbsd-sysupgrade ${{ env.SNAPSHOT_VERSION }}
         path: /tmp/_sysupgrade/
 
-    - name: checkout upstream source
+    - name: set file perms
       shell: openbsd {0}
-      run: |
-        umask 022
-        cd /usr
-        rm -rf src/*
-        git clone --no-checkout --depth=1 --filter=tree:0 https://github.com/openbsd/src.git
-        cd /usr/src
-        git sparse-checkout set --no-cone Makefile usr.bin/Makefile usr.bin/Makefile.inc usr.bin/ssh usr.bin/nc regress/usr.bin/ssh
-        git checkout
-        git log -n1
-        chown -R builder /usr/src
-        chmod -R go-w /usr/src/ /usr/obj/
-    - name: make ssh
+      run: cd $GITHUB_WORKSPACE && chown -R builder .
+    - name: Clone liboqs
       shell: openbsd {0}
-      run: |
-        cd /usr/src/usr.bin/ssh && make -j4 || make
-        make install
-        /etc/rc.d/sshd restart
-    - name: make nc
+      run: cd $GITHUB_WORKSPACE && doas -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: openbsd {0}
-      run: cd /usr/src/usr.bin/nc && make && make install
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && doas -u builder env LIBOQS_CMAKE_ARGS="-DOPENSSL_ROOT_DIR=/usr/local" bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: openbsd {0}
-      run: |
-        cd /usr/src/regress/usr.bin/ssh
-        make obj
-        doas -u builder env SUDO=doas TEST_SSH_UNSAFE_PERMISSIONS=yes TEST_SSH_FAIL_FATAL=yes TEST_SSH_HOSTBASED_AUTH=setupandrun make
-    - name: retrieve logs
-      if: failure()
-      run: |
-        rsync -a openbsd:/usr/obj/regress/usr.bin/ssh/ regress-logs/
-        for i in regress-logs/failed*.log; do echo ===; echo LOGFILE: $i; echo ===; cat $i; echo; done
-    - name: save logs
-      if: failure()
-      uses: actions/upload-artifact@main
-      with:
-        name: openbsd-current-upstream-logs
-        path: regress-logs/*.log
+      run: cd $GITHUB_WORKSPACE && doas -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
+    - name: Run tests documented to pass
+      shell: openbsd {0}
+      run: cd $GITHUB_WORKSPACE && doas -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
+      shell: openbsd {0}
+      run: cd $GITHUB_WORKSPACE && doas -u builder python3 oqs-test/try_connection.py doone
 
 
   solaris:
@@ -418,8 +347,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    - name: autoreconf
-      run: sh -c autoreconf
 
     - name: start Solaris ${{ matrix.target }} VM
       uses: vmactions/solaris-vm@v1
@@ -428,7 +355,8 @@ jobs:
         usesh: true
         prepare: |
           set -x
-          useradd -m builder
+          pkg install --accept git cmake ninja bash runtime/python-39 autoconf automake || [ $? -eq 4 ]
+          id -u builder >/dev/null 2>&1 || useradd -m builder
           sed -e "s/^root.*ALL$/root ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers >>/tmp/sudoers
           mv /tmp/sudoers /etc/sudoers
           echo "builder ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
@@ -438,33 +366,18 @@ jobs:
     - name: set file perms
       shell: solaris {0}
       run: cd $GITHUB_WORKSPACE && chown -R builder .
-    - name: configure
+    - name: Clone liboqs
       shell: solaris {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure
-    - name: make clean
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-scripts/clone_liboqs.sh
+    - name: Build liboqs
       shell: solaris {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: make
+      run: cd $GITHUB_WORKSPACE && sudo -u builder env LIBOQS_CMAKE_ARGS="-DOQS_PERMIT_UNSUPPORTED_ARCHITECTURE=ON" bash ./oqs-scripts/build_liboqs.sh
+    - name: Build OpenSSH
       shell: solaris {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make
-    - name: make tests
+      run: cd $GITHUB_WORKSPACE && sed 's/make -j2/make -j 2/g' ./oqs-scripts/build_openssh.sh | sudo -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash
+    - name: Run tests documented to pass
       shell: solaris {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder make tests
-
-    - name: "PAM: configure"
+      run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
+    - name: Ensure we have the ssh and sshd syntax right once for each algorithm
       shell: solaris {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder ./configure --with-pam
-    - name: "PAM: make clean"
-      shell: solaris {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make clean
-    - name: "PAM: make"
-      shell: solaris {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder make
-    - name: "PAM: make tests"
-      shell: solaris {0}
-      run: |
-        cd $GITHUB_WORKSPACE
-        sudo -u builder make tests
-
+      run: cd $GITHUB_WORKSPACE && sudo -u builder python3 oqs-test/try_connection.py doone
