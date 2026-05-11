@@ -53,7 +53,11 @@ jobs:
     - name: Build OpenSSH
       shell: dragonflybsd {0}
       run: |
-        cd $GITHUB_WORKSPACE && env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh && chown -R builder oqs-test/tmp
+        cd $GITHUB_WORKSPACE
+        chflags noschg /var/empty 2>/dev/null || true
+        chmod 0755 /var/empty
+        env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
+        chown -R builder oqs-test/tmp
     - name: Run tests documented to pass
       shell: dragonflybsd {0}
       run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
@@ -129,7 +133,7 @@ jobs:
         release: ${{ matrix.target }}
         usesh: true
         prepare: |
-          /usr/sbin/pkg_add -u sudo git cmake ninja bash python311
+          /usr/sbin/pkg_add -U sudo pcre2 bash git cmake ninja-build python311 autoconf automake
           /usr/sbin/useradd -m builder
           echo "builder ALL=(ALL:ALL) NOPASSWD: ALL" >>/usr/pkg/etc/sudoers
           mkdir -p /var/empty /usr/local/etc
@@ -152,7 +156,7 @@ jobs:
       run: cd $GITHUB_WORKSPACE && sudo -u builder bash ./oqs-test/run_tests.sh
     - name: Ensure we have the ssh and sshd syntax right once for each algorithm
       shell: netbsd {0}
-      run: cd $GITHUB_WORKSPACE && sudo -u builder /usr/pkg/bin/python3 oqs-test/try_connection.py doone
+      run: cd $GITHUB_WORKSPACE && sudo -u builder /usr/pkg/bin/python3.9 oqs-test/try_connection.py doone
 
 
   omnios:
@@ -226,7 +230,7 @@ jobs:
         release: ${{ matrix.target }}
         usesh: true
         prepare: |
-          pkg_add git cmake ninja bash python%3 openssl
+          pkg_add git cmake ninja bash python%3 openssl autoconf automake
           useradd -m builder
           echo "permit nopass keepenv root" >/etc/doas.conf
           echo "permit nopass keepenv builder" >>/etc/doas.conf
@@ -244,7 +248,13 @@ jobs:
       run: cd $GITHUB_WORKSPACE && doas -u builder bash ./oqs-scripts/clone_liboqs.sh
     - name: Build liboqs
       shell: openbsd {0}
-      run: cd $GITHUB_WORKSPACE && doas -u builder env LIBOQS_CMAKE_ARGS="-DOPENSSL_ROOT_DIR=/usr/local" bash ./oqs-scripts/build_liboqs.sh
+      run: |
+        cd $GITHUB_WORKSPACE
+        EOSSL_LIB=$(ls -d /usr/local/lib/eopenssl* 2>/dev/null | tail -1)
+        if [ -n "$EOSSL_LIB" ] && [ -d "$EOSSL_LIB/cmake/OpenSSL" ]; then
+          OQS_ARGS="-DOpenSSL_DIR=${EOSSL_LIB}/cmake/OpenSSL -DCMAKE_PREFIX_PATH=${EOSSL_LIB}"
+        fi
+        doas -u builder env LIBOQS_CMAKE_ARGS="$OQS_ARGS" bash ./oqs-scripts/build_liboqs.sh
     - name: Build OpenSSH
       shell: openbsd {0}
       run: cd $GITHUB_WORKSPACE && doas -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
@@ -323,7 +333,13 @@ jobs:
       run: cd $GITHUB_WORKSPACE && doas -u builder bash ./oqs-scripts/clone_liboqs.sh
     - name: Build liboqs
       shell: openbsd {0}
-      run: cd $GITHUB_WORKSPACE && doas -u builder env LIBOQS_CMAKE_ARGS="-DOPENSSL_ROOT_DIR=/usr/local" bash ./oqs-scripts/build_liboqs.sh
+      run: |
+        cd $GITHUB_WORKSPACE
+        EOSSL_LIB=$(ls -d /usr/local/lib/eopenssl* 2>/dev/null | tail -1)
+        if [ -n "$EOSSL_LIB" ] && [ -d "$EOSSL_LIB/cmake/OpenSSL" ]; then
+          OQS_ARGS="-DOpenSSL_DIR=${EOSSL_LIB}/cmake/OpenSSL -DCMAKE_PREFIX_PATH=${EOSSL_LIB}"
+        fi
+        doas -u builder env LIBOQS_CMAKE_ARGS="$OQS_ARGS" bash ./oqs-scripts/build_liboqs.sh
     - name: Build OpenSSH
       shell: openbsd {0}
       run: cd $GITHUB_WORKSPACE && doas -u builder env GITHUB_ACTIONS=true WITH_OPENSSL=true bash ./oqs-scripts/build_openssh.sh
