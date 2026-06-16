@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.140 2025/07/04 07:52:17 djm Exp $
+#	$OpenBSD: Makefile,v 1.144 2026/03/30 07:19:02 djm Exp $
 
 tests:		prep file-tests t-exec unit
 
@@ -19,6 +19,7 @@ clean:
 	for F in $(CLEANFILES); do rm -f $(OBJ)$$F; done
 	rm -rf $(OBJ).putty
 	rm -rf $(OBJ).dropbear
+	rm -rf $(OBJ).fakehome
 
 distclean:	clean
 
@@ -107,6 +108,7 @@ LTESTS= 	connect \
 		agent-restrict \
 		hostbased \
 		password \
+		kbdint \
 		channel-timeout \
 		connection-timeout \
 		match-subsystem \
@@ -114,7 +116,10 @@ LTESTS= 	connect \
 		agent-pkcs11-cert \
 		penalty \
 		penalty-expire \
-		connect-bigconf
+		connect-bigconf \
+		ssh-pkcs11 \
+		ssh-tty \
+		proxyjump
 
 INTEROP_TESTS=	putty-transfer putty-ciphers putty-kex conch-ciphers
 INTEROP_TESTS+=	dropbear-ciphers dropbear-kex dropbear-server
@@ -152,6 +157,7 @@ CLEANFILES=	*.core actual agent-key.* authorized_keys_${USERNAME} \
 		t2.out t3.out t6.out1 t6.out2 t7.out t7.out.pub \
 		t8.out t8.out.pub t9.out t9.out.pub \
 		timestamp testdata user_*key* user_ca* user_key* \
+		pin.sh nopin.sh wrongpin.sh key.pub test.sh ctl-sock \
 		*dilith* *falco* *picni* *sphincs* *slh-dsa* *slhdsa* \
 		ecdsa-sha2-nistp* sk-* ssh-dss* ssh-rsa* ssh-ed25519* \
 		host.sk-* copy authkeys_orig sshd_config_minimal check-perm mkdtemp
