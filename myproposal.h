@@ -27,6 +27,20 @@
 // OQS-TODO: can we #ifdef the PQ defs in the following #define's
 // OQS-TODO: should I add the PQ auth methods here? they were not added in 7.9 branch...
 
+#ifdef USE_MLKEM768X25519
+# define KEX_MLKEM768X25519_NAMES	"mlkem768x25519-sha256,"
+#else
+# define KEX_MLKEM768X25519_NAMES	""
+#endif
+
+#ifdef USE_SNTRUP761X25519
+# define KEX_SNTRUP761X25519_NAMES	\
+	"sntrup761x25519-sha512," \
+	"sntrup761x25519-sha512@openssh.com,"
+#else
+# define KEX_SNTRUP761X25519_NAMES	""
+#endif
+
 #define KEX_SERVER_KEX	\
 	"curve25519-sha256," \
 	"curve25519-sha256@libssh.org," \
@@ -37,9 +51,8 @@
 	"diffie-hellman-group16-sha512," \
 	"diffie-hellman-group18-sha512," \
 	"diffie-hellman-group14-sha256," \
-	"mlkem768x25519-sha256," \
-	"sntrup761x25519-sha512," \
-	"sntrup761x25519-sha512@openssh.com," \
+	KEX_MLKEM768X25519_NAMES \
+	KEX_SNTRUP761X25519_NAMES \
 /*/// OQS_TEMPLATE_FRAGMENT_ADD_SERVER_KEXS_START */ \
 	"frodokem-640-aes-sha256," \
 	"ecdh-nistp256-frodokem-640-aesr2-sha256@openquantumsafe.org," \

@@ -76,7 +76,7 @@ The following quantum-safe algorithms from liboqs are supported (assuming they h
 - **NTRU-Prime**: `ntruprime-sntrup761-sha512`\*
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_ALL_KEXS_END -->
 
-The following hybrid algorithms are made available (dependent on the associated quantum-safe algorithm being enabled):
+The following hybrid algorithms are made available via `liboqs` (dependent on the associated quantum-safe algorithm being enabled):
 
 <!--- OQS_TEMPLATE_FRAGMENT_LIST_ALL_HYBRID_KEXS_START -->
 - **BIKE**: `ecdh-nistp256-bike-l1r4-sha512@openquantumsafe.org` `x25519-bike-l1r4-sha512@openquantumsafe.org` `ecdh-nistp384-bike-l3r4-sha512@openquantumsafe.org` `ecdh-nistp521-bike-l5r4-sha512@openquantumsafe.org`
